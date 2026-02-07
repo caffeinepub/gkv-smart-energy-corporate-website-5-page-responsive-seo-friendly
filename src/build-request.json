@@ -1,0 +1,214 @@
+{
+  "kind": "build_request",
+  "title": "GKV Smart Energy corporate website (5-page, responsive, SEO-friendly)",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Implement the overall site shell with a consistent header navigation and footer across all pages for “GKV Smart Energy”, including a mobile-friendly navigation pattern (e.g., hamburger menu/drawer) and clear active-state indication for the current page.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "PAGES REQUIRED: 1. Home 2. About Us 3. Services 4. Projects / Portfolio 5. Contact Us",
+          "DESIGN REQUIREMENTS: - Easy navigation menu - Fully mobile & tablet responsive"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A header navigation is present on all pages with links to Home, About Us, Services, Projects/Portfolio, Contact Us.",
+        "Navigation is usable on mobile (no horizontal overflow; menu is reachable and tappable).",
+        "A footer is present on all pages and includes company contact details (address/phone/email placeholders if needed)."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Create the Home page with the specified sections and copy: hero (headline, subheading, two CTA buttons), introduction paragraph, service highlight cards (4 items), “Why Choose GKV Smart Energy” section, customer testimonials section, and footer contact details.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "HOME PAGE: - Hero section headline: “GKV Smart Energy – Powering a Sustainable Future” - Subheading: Smart, reliable and affordable solar energy solutions - Call-to-action buttons: “Get Free Consultation” and “Contact Us” - Introduction paragraph about rooftop solar and clean energy benefits - Service highlights in cards: • Residential Solar Solutions • Commercial & Industrial Solar • Rooftop Solar Installation • Maintenance & Support - Why Choose GKV Smart Energy section - Customer testimonials - Footer with company contact details"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Home page renders the exact hero headline and CTA button labels as provided.",
+        "Service highlights appear as 4 distinct cards with the provided titles.",
+        "“Why Choose GKV Smart Energy” section and testimonials are present with professional, simple English copy.",
+        "CTAs are clickable and navigate to the Contact page and/or contact form section (no broken links)."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Create the About Us page with sections for company overview, Vision, Mission, and experience/expertise/reliability content in a professional, trustworthy tone (simple English).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "ABOUT US: - Overview of GKV Smart Energy - Vision: Promote clean, renewable, and cost-effective energy - Mission: Deliver high-quality solar solutions with customer satisfaction - Experience, expertise, and reliability content"
+        ]
+      },
+      "acceptanceCriteria": [
+        "About Us page includes clearly labeled sections for Overview, Vision, Mission, and Experience/Expertise/Reliability.",
+        "Vision and Mission statements match the intent provided and are written in simple, business-focused English.",
+        "Page uses semantic headings (H1 for page title; H2/H3 for sections)."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Create the Services page listing the required service offerings, presented in a scannable layout (cards or sections) with short descriptions for each service.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "SERVICES PAGE: - Residential Rooftop Solar Systems - Commercial & Industrial Solar Power Plants - Solar Panel Installation & Commissioning - Solar System Maintenance & AMC - Government Solar Scheme Assistance (Subsidy Support)"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All five services are present with the exact service names (minor punctuation variations allowed).",
+        "Each service includes a brief, professional description oriented to Indian residential/commercial/industrial customers.",
+        "Layout is responsive and readable on mobile and desktop."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Create the Projects / Portfolio page with a completed-project showcase including an image gallery layout and per-project info areas for project capacity and client benefits.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "PROJECTS / PORTFOLIO: - Showcase completed solar rooftop projects - Image gallery layout - Project capacity and client benefits"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Projects/Portfolio page contains a gallery-style grid of project items with images (using generated placeholder images if real photos are not provided).",
+        "Each project item displays capacity (e.g., kW) and at least 1–2 client benefit bullets.",
+        "Gallery is responsive (grid adapts to mobile/tablet/desktop)."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Create the Contact Us page with office address section, phone number, email address, a contact form (Name, Mobile, Email, Message), and a Google Map embed placeholder area.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "CONTACT US: - Office address section - Phone number - Email address - Contact form (Name, Mobile, Email, Message) - Google Map embed placeholder"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Contact page displays address, phone, and email in a clearly readable layout.",
+        "Contact form includes the four specified fields and basic validation (required fields; email format; mobile numeric/length check).",
+        "A visible “Google Map” placeholder block exists (embed can be a placeholder if no map URL is provided)."
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Persist contact form submissions in the Motoko canister (single-actor backend) and wire the frontend form submit to call the backend; show a success/failure status to the user without page reload.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Contact form (Name, Mobile, Email, Message)"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Submitting the contact form triggers a backend call and returns a success response when stored.",
+        "The UI displays a non-technical success message on successful submission and a non-technical error message on failure.",
+        "Backend stores submissions with at least: name, mobile, email, message, and a timestamp.",
+        "No external email/SMS service is used; submissions are stored in-canister."
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Apply the requested visual design system across the site: clean professional UI, white background with green & blue solar theme, modern typography, consistent spacing, and fully mobile/tablet responsive layouts.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "DESIGN REQUIREMENTS: - Clean and professional UI - White background with green & blue solar theme - Modern typography - Fully mobile & tablet responsive"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All pages share a consistent design language (colors, typography, button styles, card styles).",
+        "Color palette is predominantly white with green & blue accents (no heavy dark theme).",
+        "Typography is modern and legible with consistent heading/body hierarchy.",
+        "Responsive behavior verified for common widths (mobile, tablet, desktop) with no overflow issues."
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Implement SEO-friendly on-page structure and content: semantic headings per page, keyword-aware copy where natural, and page-level metadata (title/description) for Home, About, Services, Projects, and Contact.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "SEO REQUIREMENTS: - SEO-friendly headings and content - Keywords: solar energy company, rooftop solar India, smart energy solutions - Optimized page structure"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Each page has a single H1 and logical H2/H3 structure.",
+        "Copy naturally includes the target keywords without keyword stuffing.",
+        "Each page sets an appropriate document title and meta description reflecting the page content."
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Generate and include solar-themed static images for the Home hero and Projects gallery, and render them as static assets in the frontend (do not serve images from the backend).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Create a professional, modern, mobile-responsive solar energy company website similar in structure, layout, and content style to nspg.in.",
+          "PROJECTS / PORTFOLIO: - Image gallery layout"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Generated images are saved under frontend/public/assets/generated and referenced directly by the frontend UI.",
+        "Home page hero includes a solar-themed visual.",
+        "Projects gallery uses the generated placeholder project images."
+      ]
+    }
+  ],
+  "constraints": [
+    "Backend must remain a single Motoko actor (all logic in backend/main.mo); add migration.mo only if an upgrade-safe state migration is required.",
+    "Do not edit files under frontend/src/components/ui or other immutable paths listed in SYSTEM_CONTEXT; compose them instead.",
+    "No external databases or third-party auth providers; Internet Identity only if authentication is later added (not required here).",
+    "No external email/SMS integrations for contact form; store submissions on-canister."
+  ],
+  "nonGoals": [
+    "Implementing user authentication/admin dashboard for viewing contact submissions.",
+    "Integrating live Google Maps API (only an embed placeholder is required unless a specific embed URL is provided).",
+    "Adding payments, chat, real-time features, or third-party CRM integrations.",
+    "Cloning nspg.in exactly; only similar structure/layout/content style is required."
+  ],
+  "imageRequirements": {
+    "required": [
+      "Solar rooftop hero illustration/photo with clean white background and green/blue accents (gkv-hero-solar.dim_1600x900.png)",
+      "Three solar project placeholder images showing rooftop/commercial solar installations in India context (gkv-project-01.dim_1200x800.png)",
+      "Three solar project placeholder images showing rooftop/commercial solar installations in India context (gkv-project-02.dim_1200x800.png)",
+      "Three solar project placeholder images showing rooftop/commercial solar installations in India context (gkv-project-03.dim_1200x800.png)",
+      "Simple modern logo mark with sun/solar motif in green & blue on transparent background (gkv-logo.dim_512x512.png)"
+    ],
+    "edits": []
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-07T15:44:41.219Z",
+  "summary": "Most frontend structure appears to implement the 5-page site with shared header/footer, responsive navigation, SEO helper, and a wired contact form with client-side validation. The backend persists contact entries but does not meet the required data fields (missing mobile and timestamp) and introduces extra, unrequested authentication scaffolding and an admin-like retrieval API.",
+  "missing_requirements": [
+    {
+      "id": "REQ-7",
+      "requirement": "Backend stores submissions with at least: name, mobile, email, message, and a timestamp.",
+      "reason": "The backend ContactEntry type includes only name, email, and message; it does not store mobile or any timestamp field.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Internet Identity authentication/provider scaffolding added to the app (AuthClient, identity context, actor switching based on identity).",
+      "reason": "BuildRequest explicitly says authentication is not required; Internet Identity should only be used if auth is later added.",
+      "evidence": [
+        "frontend/src/main.tsx",
+        "frontend/src/hooks/useInternetIdentity.ts",
+        "frontend/src/hooks/useActor.ts"
+      ]
+    },
+    {
+      "description": "Backend query API to retrieve all contact form entries (admin-style access).",
+      "reason": "Non-goals explicitly include an admin dashboard for viewing contact submissions; providing a bulk retrieval endpoint is an admin-oriented feature and was not requested by any REQ.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "description": "Footer includes a 'Built with ❤️ using caffeine.ai' attribution link.",
+      "reason": "Not requested in the BuildRequest requirements or acceptance criteria; adds extra branding/attribution content.",
+      "evidence": [
+        "frontend/src/components/SiteFooter.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.72,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/ContactForm.tsx",
+    "frontend/src/components/SiteFooter.tsx",
+    "frontend/src/components/SiteHeader.tsx",
+    "frontend/src/components/SiteLayout.tsx",
+    "frontend/src/data/projects.ts",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/lib/seo.ts",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/AboutPage.tsx",
+    "frontend/src/pages/ContactPage.tsx",
+    "frontend/src/pages/HomePage.tsx",
+    "frontend/src/pages/ProjectsPage.tsx",
+    "frontend/src/pages/ServicesPage.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

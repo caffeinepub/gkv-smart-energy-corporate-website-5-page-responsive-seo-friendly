@@ -1,0 +1,144 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Corporate, professional, mobile-responsive solar energy website for GKV Smart Energy (India), modeled after nspg.in structure, with 5 core pages (Home, About, Services, Projects/Portfolio, Contact), SEO-friendly content, and a clean green/blue solar theme.",
+  "architectural_notes": [
+    "Site modeled after the structure/layout/content style of nspg.in.",
+    "Tone: professional, trustworthy, simple English, business-focused.",
+    "SEO-friendly headings and page structure with target keywords.",
+    "Responsive design required for mobile and tablet.",
+    "UI theme: white background with green & blue solar palette; modern typography; clear navigation."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Solar rooftop hero illustration/photo with clean white background and green/blue accents (gkv-hero-solar.dim_1600x900.png)\n- Three solar project placeholder images showing rooftop/commercial solar installations in India context (gkv-project-01.dim_1200x800.png)\n- Three solar project placeholder images showing rooftop/commercial solar installations in India context (gkv-project-02.dim_1200x800.png)\n- Three solar project placeholder images showing rooftop/commercial solar installations in India context (gkv-project-03.dim_1200x800.png)\n- Simple modern logo mark with sun/solar motif in green & blue on transparent background (gkv-logo.dim_512x512.png)",
+  "existing_features": [
+    {
+      "id": "feature-implement-the-overall-site-shell-with-a-consistent-header-navigation-and-footer-across-all-pages-for-gkv-smart-energy-including-a-mobile-friendly-navigation-pattern-e-g-hamburger-menu-drawer-and-clear-active-state-indication-for-the-current-page",
+      "title": "Implement the overall site shell with a consistent header navigation and footer across all pages for “GKV Smart Energy”, including a mobile-friendly navigation pattern (e.g., hamburger menu/drawer) and clear active-state indication for the current page.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-the-home-page-with-the-specified-sections-and-copy-hero-headline-subheading-two-cta-buttons-introduction-paragraph-service-highlight-cards-4-items-why-choose-gkv-smart-energy-section-customer-testimonials-section-and-footer-contact-details",
+      "title": "Create the Home page with the specified sections and copy: hero (headline, subheading, two CTA buttons), introduction paragraph, service highlight cards (4 items), “Why Choose GKV Smart Energy” section, customer testimonials section, and footer contact details.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-the-about-us-page-with-sections-for-company-overview-vision-mission-and-experience-expertise-reliability-content-in-a-professional-trustworthy-tone-simple-english",
+      "title": "Create the About Us page with sections for company overview, Vision, Mission, and experience/expertise/reliability content in a professional, trustworthy tone (simple English).",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-the-services-page-listing-the-required-service-offerings-presented-in-a-scannable-layout-cards-or-sections-with-short-descriptions-for-each-service",
+      "title": "Create the Services page listing the required service offerings, presented in a scannable layout (cards or sections) with short descriptions for each service.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-the-projects-portfolio-page-with-a-completed-project-showcase-including-an-image-gallery-layout-and-per-project-info-areas-for-project-capacity-and-client-benefits",
+      "title": "Create the Projects / Portfolio page with a completed-project showcase including an image gallery layout and per-project info areas for project capacity and client benefits.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-the-contact-us-page-with-office-address-section-phone-number-email-address-a-contact-form-name-mobile-email-message-and-a-google-map-embed-placeholder-area",
+      "title": "Create the Contact Us page with office address section, phone number, email address, a contact form (Name, Mobile, Email, Message), and a Google Map embed placeholder area.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-persist-contact-form-submissions-in-the-motoko-canister-single-actor-backend-and-wire-the-frontend-form-submit-to-call-the-backend-show-a-success-failure-status-to-the-user-without-page-reload",
+      "title": "Persist contact form submissions in the Motoko canister (single-actor backend) and wire the frontend form submit to call the backend; show a success/failure status to the user without page reload.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-the-requested-visual-design-system-across-the-site-clean-professional-ui-white-background-with-green-blue-solar-theme-modern-typography-consistent-spacing-and-fully-mobile-tablet-responsive-layouts",
+      "title": "Apply the requested visual design system across the site: clean professional UI, white background with green & blue solar theme, modern typography, consistent spacing, and fully mobile/tablet responsive layouts.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-seo-friendly-on-page-structure-and-content-semantic-headings-per-page-keyword-aware-copy-where-natural-and-page-level-metadata-title-description-for-home-about-services-projects-and-contact",
+      "title": "Implement SEO-friendly on-page structure and content: semantic headings per page, keyword-aware copy where natural, and page-level metadata (title/description) for Home, About, Services, Projects, and Contact.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-generate-and-include-solar-themed-static-images-for-the-home-hero-and-projects-gallery-and-render-them-as-static-assets-in-the-frontend-do-not-serve-images-from-the-backend",
+      "title": "Generate and include solar-themed static images for the Home hero and Projects gallery, and render them as static assets in the frontend (do not serve images from the backend).",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create Home page with hero (headline/subheading), CTAs, intro, service highlight cards, Why Choose Us, testimonials, and footer contact details",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Create About Us page with company overview, vision, mission, and experience/expertise/reliability content",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Create Services page listing residential, commercial & industrial, installation/commissioning, maintenance & AMC, and government subsidy assistance",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Create Projects/Portfolio page with completed-project showcase, image gallery layout, and project capacity/client benefits info",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Create Contact Us page with address/phone/email, contact form (name, mobile, email, message), and Google Map embed placeholder",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Implement clean, professional UI: white background, green & blue solar theme, modern typography, easy navigation, fully mobile/tablet responsive",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Implement SEO-friendly structure and on-page content using target keywords (solar energy company, rooftop solar India, smart energy solutions)",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "projectName": "GKV Smart Energy corporate website (5-page, responsive, SEO-friendly)",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

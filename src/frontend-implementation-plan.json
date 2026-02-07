@@ -1,0 +1,315 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "GKV Smart Energy corporate website (5-page, responsive, SEO-friendly) — Frontend plan",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Implement a consistent site shell (header + mobile navigation + footer) across all pages with active nav indication.",
+      "acceptanceCriteria": [
+        "A header navigation is present on all pages with links to Home, About Us, Services, Projects/Portfolio, Contact Us.",
+        "Navigation is usable on mobile (no horizontal overflow; menu is reachable and tappable).",
+        "A footer is present on all pages and includes company contact details (address/phone/email placeholders if needed)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/SiteHeader.tsx",
+          "operation": "create",
+          "description": "Create a responsive header with desktop nav and a mobile drawer/hamburger pattern; use shadcn-ui components (e.g., Button, Sheet/Drawer) to implement accessible navigation. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/SiteFooter.tsx",
+          "operation": "create",
+          "description": "Create a consistent footer with contact details placeholders (address/phone/email) and simple secondary links; match the green/blue-on-white theme."
+        },
+        {
+          "path": "frontend/src/components/SiteLayout.tsx",
+          "operation": "create",
+          "description": "Create a shared layout wrapper that renders SiteHeader + main content + SiteFooter; ensure active nav state support (e.g., via router NavLink)."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the SiteLayout around all page routes and ensure navigation links exist for Home, About, Services, Projects/Portfolio, Contact."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Build the Home page with required sections, exact hero copy/CTAs, highlights, why-choose, testimonials, and footer contact details.",
+      "acceptanceCriteria": [
+        "Home page renders the exact hero headline and CTA button labels as provided.",
+        "Service highlights appear as 4 distinct cards with the provided titles.",
+        "“Why Choose GKV Smart Energy” section and testimonials are present with professional, simple English copy.",
+        "CTAs are clickable and navigate to the Contact page and/or contact form section (no broken links)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "create",
+          "description": "Implement Home page sections: hero (exact headline “GKV Smart Energy – Powering a Sustainable Future”, subheading, 2 CTAs), intro paragraph, 4 service highlight cards, “Why Choose GKV Smart Energy”, testimonials, and link CTAs to Contact route/section. Use shadcn-ui components (e.g., Card, Button) for cards/buttons. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Register the Home page route and ensure header navigation points to it; ensure CTAs navigate correctly to Contact."
+        },
+        {
+          "path": "frontend/src/pages/home/sections/ServiceHighlights.tsx",
+          "operation": "create",
+          "description": "Create a dedicated section component rendering the 4 required service highlight cards (Residential Solar Solutions, Commercial & Industrial Solar, Rooftop Solar Installation, Maintenance & Support). Use shadcn-ui Card for consistent styling. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/home/sections/Testimonials.tsx",
+          "operation": "create",
+          "description": "Create a testimonials section with professional, simple English testimonial copy and a clean card/list layout; use shadcn-ui Card for items. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Create the About Us page with overview, vision, mission, and experience/expertise/reliability content using semantic headings.",
+      "acceptanceCriteria": [
+        "About Us page includes clearly labeled sections for Overview, Vision, Mission, and Experience/Expertise/Reliability.",
+        "Vision and Mission statements match the intent provided and are written in simple, business-focused English.",
+        "Page uses semantic headings (H1 for page title; H2/H3 for sections)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/AboutPage.tsx",
+          "operation": "create",
+          "description": "Implement About Us page with H1 title and H2/H3 sections: Overview, Vision (clean/renewable/cost-effective energy), Mission (high-quality solar solutions + customer satisfaction), and Experience/Expertise/Reliability content in a trustworthy tone."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Register the About Us route and wire it into the header navigation active-state behavior."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Create a scannable Services page listing all five required offerings with short descriptions and responsive layout.",
+      "acceptanceCriteria": [
+        "All five services are present with the exact service names (minor punctuation variations allowed).",
+        "Each service includes a brief, professional description oriented to Indian residential/commercial/industrial customers.",
+        "Layout is responsive and readable on mobile and desktop."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/ServicesPage.tsx",
+          "operation": "create",
+          "description": "Implement Services page as a responsive grid/list of 5 service cards/sections with required names and short descriptions for Indian customers. Use shadcn-ui Card for scannable layout. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Register the Services route and wire it into the site navigation."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Create Projects/Portfolio page with responsive image gallery and per-project capacity + client benefits.",
+      "acceptanceCriteria": [
+        "Projects/Portfolio page contains a gallery-style grid of project items with images (using generated placeholder images if real photos are not provided).",
+        "Each project item displays capacity (e.g., kW) and at least 1–2 client benefit bullets.",
+        "Gallery is responsive (grid adapts to mobile/tablet/desktop)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/ProjectsPage.tsx",
+          "operation": "create",
+          "description": "Implement Projects/Portfolio page with a responsive gallery grid; each project card shows a static image, capacity (kW), and 1–2 benefit bullets. Use shadcn-ui Card for project items. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Register the Projects/Portfolio route and wire it into the header navigation."
+        },
+        {
+          "path": "frontend/src/data/projects.ts",
+          "operation": "create",
+          "description": "Add a small static projects dataset used by ProjectsPage including capacity and benefit bullets; reference generated images by their exact paths under frontend/public/assets/generated."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Create Contact Us page with contact details, validated contact form fields, and a visible Google Map placeholder area.",
+      "acceptanceCriteria": [
+        "Contact page displays address, phone, and email in a clearly readable layout.",
+        "Contact form includes the four specified fields and basic validation (required fields; email format; mobile numeric/length check).",
+        "A visible “Google Map” placeholder block exists (embed can be a placeholder if no map URL is provided)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/ContactPage.tsx",
+          "operation": "create",
+          "description": "Implement Contact page with address/phone/email sections, a contact form (Name, Mobile, Email, Message) with basic client-side validation, and a visible Google Map placeholder block. Use shadcn-ui Input/Textarea/Button/Alert (or similar) for consistent UI. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/ContactForm.tsx",
+          "operation": "create",
+          "description": "Extract the contact form into a reusable component handling controlled inputs, validation, submit state (loading/success/error), and no page reload. Use shadcn-ui form inputs and alerts for status messaging. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Register the Contact route and ensure Home CTAs link here; optionally support an anchor/scroll-to-form if implemented."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Wire contact form submit to the existing backend call and show success/failure status without page reload.",
+      "acceptanceCriteria": [
+        "Submitting the contact form triggers a backend call and returns a success response when stored.",
+        "The UI displays a non-technical success message on successful submission and a non-technical error message on failure.",
+        "Backend stores submissions with at least: name, mobile, email, message, and a timestamp.",
+        "No external email/SMS service is used; submissions are stored in-canister."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/services/contactSubmissions.ts",
+          "operation": "create",
+          "description": "Create a small service wrapper that calls the backend capability to submit the contact form; use the core-infrastructure backend connection configuration already present in the template (import and usage to be verified in repo). Ensure the call is awaited and errors are handled."
+        },
+        {
+          "path": "frontend/src/components/ContactForm.tsx",
+          "operation": "modify",
+          "description": "Connect form submission to the contactSubmissions service; show non-technical success/error messages inline without reload and disable submit while pending. Note: backend interface currently accepts (name, email, message); include mobile by incorporating it into the submitted message if needed until backend supports a dedicated mobile field."
+        },
+        {
+          "path": "frontend/src/backend.d.ts",
+          "operation": "modify",
+          "description": "Update the frontend type declarations if needed to reflect the final backend submission shape used by the UI (keep types aligned with the generated actor bindings used in core-infrastructure)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Apply a consistent clean green/blue solar-themed visual design system with modern typography and responsive spacing across the site.",
+      "acceptanceCriteria": [
+        "All pages share a consistent design language (colors, typography, button styles, card styles).",
+        "Color palette is predominantly white with green & blue accents (no heavy dark theme).",
+        "Typography is modern and legible with consistent heading/body hierarchy.",
+        "Responsive behavior verified for common widths (mobile, tablet, desktop) with no overflow issues."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Define/adjust global CSS variables and base styles to implement a white background with green/blue accents, modern typography, consistent spacing, and accessible focus styles; avoid heavy dark theme."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend theme tokens (if needed) for brand accent greens/blues and consistent radii/shadows; keep the design system consistent with CSS variables used by shadcn-ui."
+        },
+        {
+          "path": "frontend/src/components/SiteHeader.tsx",
+          "operation": "modify",
+          "description": "Ensure header layout, spacing, and mobile behavior follow the design system; avoid overflow on small widths. Use shadcn-ui primitives for consistent styling. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/SiteFooter.tsx",
+          "operation": "modify",
+          "description": "Ensure footer typography, spacing, and link styles match the design system and remain readable on mobile."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Implement SEO-friendly page structure: semantic headings, keyword-aware copy, and per-page title/meta description.",
+      "acceptanceCriteria": [
+        "Each page has a single H1 and logical H2/H3 structure.",
+        "Copy naturally includes the target keywords without keyword stuffing.",
+        "Each page sets an appropriate document title and meta description reflecting the page content."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/lib/seo.ts",
+          "operation": "create",
+          "description": "Add a small utility/hook to set document title and update/create the meta description tag on route changes/pages (SPA-friendly)."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Ensure a single H1 and logical H2/H3 headings; include target keywords naturally (e.g., solar energy company, rooftop solar India, smart energy solutions) and call seo utility to set title/description."
+        },
+        {
+          "path": "frontend/src/pages/AboutPage.tsx",
+          "operation": "modify",
+          "description": "Ensure semantic headings and keyword-aware copy where natural; set page title and meta description via seo utility."
+        },
+        {
+          "path": "frontend/src/pages/ServicesPage.tsx",
+          "operation": "modify",
+          "description": "Ensure semantic headings and keyword-aware copy where natural; set page title and meta description via seo utility."
+        },
+        {
+          "path": "frontend/src/pages/ProjectsPage.tsx",
+          "operation": "modify",
+          "description": "Ensure semantic headings and keyword-aware copy where natural; set page title and meta description via seo utility."
+        },
+        {
+          "path": "frontend/src/pages/ContactPage.tsx",
+          "operation": "modify",
+          "description": "Ensure semantic headings and keyword-aware copy where natural; set page title and meta description via seo utility."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Include the required generated solar-themed static images and render them from frontend static assets (no backend image serving).",
+      "acceptanceCriteria": [
+        "Generated images are saved under frontend/public/assets/generated and referenced directly by the frontend UI.",
+        "Home page hero includes a solar-themed visual.",
+        "Projects gallery uses the generated placeholder project images."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/gkv-hero-solar.dim_1600x900.png",
+          "operation": "create",
+          "description": "Add the generated Home hero image asset at the exact required path/filename for static serving."
+        },
+        {
+          "path": "frontend/public/assets/generated/gkv-project-01.dim_1200x800.png",
+          "operation": "create",
+          "description": "Add the generated Projects placeholder image asset at the exact required path/filename for static serving."
+        },
+        {
+          "path": "frontend/public/assets/generated/gkv-project-02.dim_1200x800.png",
+          "operation": "create",
+          "description": "Add the generated Projects placeholder image asset at the exact required path/filename for static serving."
+        },
+        {
+          "path": "frontend/public/assets/generated/gkv-project-03.dim_1200x800.png",
+          "operation": "create",
+          "description": "Add the generated Projects placeholder image asset at the exact required path/filename for static serving."
+        },
+        {
+          "path": "frontend/public/assets/generated/gkv-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated logo image asset at the exact required path/filename for static serving."
+        },
+        {
+          "path": "frontend/src/components/SiteHeader.tsx",
+          "operation": "modify",
+          "description": "Render the generated logo in the header using the static asset frontend/public/assets/generated/gkv-logo.dim_512x512.png and ensure it scales well on mobile. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Render the hero visual using frontend/public/assets/generated/gkv-hero-solar.dim_1600x900.png as a static asset and ensure responsive behavior across breakpoints."
+        },
+        {
+          "path": "frontend/src/pages/ProjectsPage.tsx",
+          "operation": "modify",
+          "description": "Wire the gallery images to use the generated placeholders: frontend/public/assets/generated/gkv-project-01.dim_1200x800.png, frontend/public/assets/generated/gkv-project-02.dim_1200x800.png, frontend/public/assets/generated/gkv-project-03.dim_1200x800.png."
+        }
+      ]
+    }
+  ]
+}

@@ -1,2 +1,3 @@
-# gkv-smart-energy-corporate-website-5-page-responsive-seo-friendly
-Exported from Caffeine project: GKV Smart Energy corporate website (5-page, responsive, SEO-friendly)
+## GKV Smart Energy corporate website (5-page, responsive, SEO-friendly)
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`

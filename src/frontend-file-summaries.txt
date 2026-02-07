@@ -1,0 +1,17 @@
+{
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup, defining all routes (Home, About, Services, Projects, Contact) and wrapping them in the SiteLayout component.",
+  "frontend/src/components/SiteLayout.tsx": "Layout wrapper component that renders the site header, main content outlet, and footer for consistent structure across all pages.",
+  "frontend/src/components/SiteHeader.tsx": "Responsive header component with logo, desktop navigation menu, and mobile drawer navigation using Sheet component; includes active route highlighting.",
+  "frontend/src/components/SiteFooter.tsx": "Footer component displaying company info, quick links, services list, contact details, and attribution with caffeine.ai link.",
+  "frontend/src/pages/HomePage.tsx": "Home page with hero section, introduction, service highlights cards, why choose us section, customer testimonials, and CTA; includes SEO metadata.",
+  "frontend/src/pages/AboutPage.tsx": "About page featuring company overview, vision and mission cards, experience/expertise/reliability sections, and core values; includes SEO metadata.",
+  "frontend/src/pages/ServicesPage.tsx": "Services page displaying all five solar service offerings in detailed cards with features lists and CTA section; includes SEO metadata.",
+  "frontend/src/pages/ProjectsPage.tsx": "Projects portfolio page with stats section and gallery grid of completed solar installations showing capacity and client benefits; includes SEO metadata.",
+  "frontend/src/pages/ContactPage.tsx": "Contact page with contact information cards, contact form component, and Google Map placeholder section; includes SEO metadata.",
+  "frontend/src/components/ContactForm.tsx": "Reusable contact form component with validation, loading states, success/error alerts, and backend integration for form submission.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for backend operations, specifically the contact form submission mutation with cache invalidation.",
+  "frontend/src/data/projects.ts": "Static data file containing project information (title, location, capacity, images, benefits) used by the Projects page.",
+  "frontend/src/lib/seo.ts": "SEO utility function to dynamically set page title, meta description, and Open Graph tags for better search engine optimization.",
+  "frontend/src/index.css": "Global styles with OKLCH color system customized for solar energy theme using green and blue accents on white background for both light and dark modes.",
+  "frontend/tailwind.config.js": "Tailwind configuration extended with custom colors, shadows, Inter font family, and design tokens matching the solar energy brand theme."
+}
