@@ -1,7 +1,10 @@
 import { Mail, MapPin, Phone } from 'lucide-react';
 import { Link } from '@tanstack/react-router';
+import { useState } from 'react';
 
 export default function SiteFooter() {
+  const [logoError, setLogoError] = useState(false);
+
   return (
     <footer className="border-t bg-muted/30">
       <div className="container py-12">
@@ -9,11 +12,18 @@ export default function SiteFooter() {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <img
-                src="/assets/generated/gkv-logo.dim_512x512.png"
-                alt="GKV Smart Energy"
-                className="h-8 w-8 object-contain"
-              />
+              {!logoError ? (
+                <img
+                  src="/assets/generated/gkv-logo.dim_512x512.png"
+                  alt="GKV Smart Energy"
+                  className="h-8 w-8 object-contain"
+                  onError={() => setLogoError(true)}
+                />
+              ) : (
+                <div className="h-8 w-8 rounded bg-primary/10 flex items-center justify-center">
+                  <span className="text-primary font-bold text-sm">GKV</span>
+                </div>
+              )}
               <span className="text-lg font-bold text-primary">GKV Smart Energy</span>
             </div>
             <p className="text-sm text-muted-foreground">
@@ -65,15 +75,19 @@ export default function SiteFooter() {
             <ul className="space-y-3 text-sm text-muted-foreground">
               <li className="flex items-start gap-2">
                 <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0 text-primary" />
-                <span>123 Solar Street, Green City, India - 400001</span>
+                <span>Village + Post – Saurath, Rahika, Madhubani – 847213, Bihar, India</span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4 flex-shrink-0 text-primary" />
-                <span>+91 98765 43210</span>
+                <a href="tel:+917718053222" className="hover:text-primary transition-colors">
+                  +91 77180 53222
+                </a>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4 flex-shrink-0 text-primary" />
-                <span>info@gkvsmartenergy.com</span>
+                <a href="mailto:gkvsmartenergy@gmail.com" className="hover:text-primary transition-colors">
+                  gkvsmartenergy@gmail.com
+                </a>
               </li>
             </ul>
           </div>

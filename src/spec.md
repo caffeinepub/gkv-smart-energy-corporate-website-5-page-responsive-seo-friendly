@@ -1,18 +1,13 @@
 # Specification
 
 ## Summary
-**Goal:** Build a 5-page, responsive, SEO-friendly corporate website for “GKV Smart Energy” with consistent navigation, solar-themed design, and a working contact form that stores submissions in a Motoko canister.
+**Goal:** Update the site’s contact details to the correct company information, add a Board of Directors section with photos on the About page, and ensure the logo renders consistently with a graceful fallback.
 
 **Planned changes:**
-- Implement a shared site shell (header nav with active state + mobile hamburger/drawer, and a footer with contact detail placeholders) across Home, About Us, Services, Projects/Portfolio, and Contact Us pages.
-- Build the Home page sections with the provided hero headline/subheading, two CTA buttons, intro paragraph, 4 service highlight cards, “Why Choose” section, testimonials, and footer contact details.
-- Build the About Us page with labeled sections: Overview, Vision, Mission, and Experience/Expertise/Reliability in simple professional English.
-- Build the Services page listing the 5 required service offerings in a scannable, responsive layout with short descriptions.
-- Build the Projects/Portfolio page with a responsive gallery grid of projects, each showing an image, capacity (kW), and 1–2 client benefit bullets.
-- Build the Contact Us page with address/phone/email, a contact form (Name, Mobile, Email, Message) with basic validation, and a visible Google Map placeholder block.
-- Implement backend persistence for contact submissions in a single Motoko actor and wire the frontend form submission to it with success/failure messaging (no page reload).
-- Apply the requested visual design system (white background, green/blue accents, modern typography, consistent spacing) across all pages with full mobile/tablet responsiveness.
-- Add SEO-friendly structure: semantic headings (one H1 per page, logical H2/H3) and page-level metadata (title/description) for all five pages, with natural inclusion of target keywords.
-- Add generated solar-themed static images as frontend assets for the Home hero and Projects gallery (served from the frontend, not backend).
+- Replace any placeholder contact info across the site (footer and Contact page) with the provided mobile number, email, and both head/branch office addresses (English text).
+- Update Contact page “visit/map” placeholder text to reference the provided office location(s) rather than the old placeholder address.
+- Add an About page “Board of Directors” section listing Vishnu Kumar Chaudhary, Kartik Kumar Chaudhary, and Ganesh Kumar Chaudhary with square, consistently sized headshot images in a responsive layout.
+- Add three director photo image assets as static files under `frontend/public/assets/generated` and reference them from the new section.
+- Ensure header and footer use the existing logo asset path consistently, including meaningful alt text and a safe text fallback if the logo fails to load.
 
-**User-visible outcome:** Visitors can browse a clean, mobile-friendly 5-page GKV Smart Energy website, view services and project examples with images, and submit the contact form to store their message and see an immediate success/error status.
+**User-visible outcome:** Visitors see the correct addresses, phone, and email everywhere on the site, can view a Board of Directors section with photos on the About page, and the company logo displays reliably in the header/footer with fallback branding if the image can’t be loaded.

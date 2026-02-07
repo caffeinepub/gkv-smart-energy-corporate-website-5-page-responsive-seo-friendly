@@ -51,10 +51,30 @@ export default function ContactPage() {
                         <MapPin className="h-6 w-6 text-primary" />
                       </div>
                       <div>
-                        <CardTitle className="text-lg mb-1">Office Address</CardTitle>
+                        <CardTitle className="text-lg mb-1">Head Office</CardTitle>
                         <CardDescription className="text-base">
-                          123 Solar Street, Green City,<br />
-                          Maharashtra, India - 400001
+                          Village + Post – Saurath, Rahika,<br />
+                          Madhubani – 847213,<br />
+                          Bihar, India
+                        </CardDescription>
+                      </div>
+                    </div>
+                  </CardHeader>
+                </Card>
+
+                <Card className="border-2">
+                  <CardHeader>
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+                        <MapPin className="h-6 w-6 text-primary" />
+                      </div>
+                      <div>
+                        <CardTitle className="text-lg mb-1">Branch Office</CardTitle>
+                        <CardDescription className="text-base">
+                          Maruti Nagar Colony,<br />
+                          Kashi Vishwanath Area,<br />
+                          Varanasi – 221005,<br />
+                          Uttar Pradesh, India
                         </CardDescription>
                       </div>
                     </div>
@@ -70,8 +90,8 @@ export default function ContactPage() {
                       <div>
                         <CardTitle className="text-lg mb-1">Phone Number</CardTitle>
                         <CardDescription className="text-base">
-                          <a href="tel:+919876543210" className="hover:text-primary transition-colors">
-                            +91 98765 43210
+                          <a href="tel:+917718053222" className="hover:text-primary transition-colors">
+                            +91 77180 53222
                           </a>
                         </CardDescription>
                       </div>
@@ -88,8 +108,8 @@ export default function ContactPage() {
                       <div>
                         <CardTitle className="text-lg mb-1">Email Address</CardTitle>
                         <CardDescription className="text-base">
-                          <a href="mailto:info@gkvsmartenergy.com" className="hover:text-primary transition-colors">
-                            info@gkvsmartenergy.com
+                          <a href="mailto:gkvsmartenergy@gmail.com" className="hover:text-primary transition-colors">
+                            gkvsmartenergy@gmail.com
                           </a>
                         </CardDescription>
                       </div>
@@ -139,7 +159,7 @@ export default function ContactPage() {
         <div className="container">
           <div className="text-center space-y-4 mb-8">
             <h2 className="text-3xl font-bold tracking-tight text-primary">
-              Visit Our Office
+              Visit Our Offices
             </h2>
             <p className="text-lg text-muted-foreground">
               Find us on the map and plan your visit
@@ -151,7 +171,10 @@ export default function ContactPage() {
                 <MapPin className="h-12 w-12 text-primary mx-auto mb-4" />
                 <p className="text-lg font-semibold">Google Map Location</p>
                 <p className="text-muted-foreground">
-                  123 Solar Street, Green City, Maharashtra, India - 400001
+                  Head Office: Village + Post – Saurath, Rahika, Madhubani – 847213, Bihar, India
+                </p>
+                <p className="text-muted-foreground">
+                  Branch Office: Maruti Nagar Colony, Kashi Vishwanath Area, Varanasi – 221005, Uttar Pradesh, India
                 </p>
                 <p className="text-sm text-muted-foreground">
                   (Map embed placeholder - integrate with Google Maps API)

@@ -3,6 +3,21 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Target, Eye, Award, Users, Zap, Shield } from 'lucide-react';
 import { setSEO } from '@/lib/seo';
 
+const directors = [
+  {
+    name: 'Vishnu Kumar Chaudhary',
+    image: '/assets/generated/director-vishnu.dim_500x500.png',
+  },
+  {
+    name: 'Kartik Kumar Chaudhary',
+    image: '/assets/generated/director-kartik.dim_500x500.png',
+  },
+  {
+    name: 'Ganesh Kumar Chaudhary',
+    image: '/assets/generated/director-ganesh.dim_500x500.png',
+  },
+];
+
 export default function AboutPage() {
   useEffect(() => {
     setSEO(
@@ -88,8 +103,44 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Experience, Expertise & Reliability */}
+      {/* Board of Directors */}
       <section className="py-16 md:py-20 bg-white">
+        <div className="container">
+          <div className="text-center space-y-4 mb-12">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-primary">
+              Board of Directors
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Meet the leadership team driving our vision forward
+            </p>
+          </div>
+
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
+            {directors.map((director) => (
+              <Card key={director.name} className="border-2 overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="aspect-square w-full overflow-hidden bg-muted">
+                    <img
+                      src={director.image}
+                      alt={director.name}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                  <div className="p-6 text-center">
+                    <h3 className="text-xl font-semibold text-foreground">
+                      {director.name}
+                    </h3>
+                    <p className="text-sm text-muted-foreground mt-1">Director</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Experience, Expertise & Reliability */}
+      <section className="py-16 md:py-20 bg-muted/30">
         <div className="container">
           <div className="text-center space-y-4 mb-12">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-primary">

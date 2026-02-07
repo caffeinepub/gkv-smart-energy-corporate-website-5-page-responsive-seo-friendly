@@ -1,95 +1,45 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Corporate, professional, mobile-responsive solar energy website for GKV Smart Energy (India), modeled after nspg.in structure, with 5 core pages (Home, About, Services, Projects/Portfolio, Contact), SEO-friendly content, and a clean green/blue solar theme.",
+  "summary": "Corporate/business website for GKV SMART ENERGY PRIVATE LIMITED (solar & renewable energy) targeting residential, commercial, and industrial customers in India. Site to include company addresses, contact details, logo, and a Board of Directors section with photos.",
   "architectural_notes": [
-    "Site modeled after the structure/layout/content style of nspg.in.",
-    "Tone: professional, trustworthy, simple English, business-focused.",
-    "SEO-friendly headings and page structure with target keywords.",
-    "Responsive design required for mobile and tablet.",
-    "UI theme: white background with green & blue solar palette; modern typography; clear navigation."
+    "Director photos should use a consistent square crop/size (e.g., 500×500 px) for uniform display."
   ],
-  "known_issues": [],
+  "known_issues": [
+    "App generation/build process intermittently fails with an internal configuration error; may require retry/redeploy."
+  ],
   "isFixRequest": false,
-  "imageRequirements": "## Required Images\n- Solar rooftop hero illustration/photo with clean white background and green/blue accents (gkv-hero-solar.dim_1600x900.png)\n- Three solar project placeholder images showing rooftop/commercial solar installations in India context (gkv-project-01.dim_1200x800.png)\n- Three solar project placeholder images showing rooftop/commercial solar installations in India context (gkv-project-02.dim_1200x800.png)\n- Three solar project placeholder images showing rooftop/commercial solar installations in India context (gkv-project-03.dim_1200x800.png)\n- Simple modern logo mark with sun/solar motif in green & blue on transparent background (gkv-logo.dim_512x512.png)",
+  "imageRequirements": "## Required Images\n- Neutral corporate director headshot placeholder portrait, square crop, soft background (director-vishnu.dim_500x500.png)\n- Neutral corporate director headshot placeholder portrait, square crop, soft background (director-kartik.dim_500x500.png)\n- Neutral corporate director headshot placeholder portrait, square crop, soft background (director-ganesh.dim_500x500.png)",
   "existing_features": [
     {
-      "id": "feature-implement-the-overall-site-shell-with-a-consistent-header-navigation-and-footer-across-all-pages-for-gkv-smart-energy-including-a-mobile-friendly-navigation-pattern-e-g-hamburger-menu-drawer-and-clear-active-state-indication-for-the-current-page",
-      "title": "Implement the overall site shell with a consistent header navigation and footer across all pages for “GKV Smart Energy”, including a mobile-friendly navigation pattern (e.g., hamburger menu/drawer) and clear active-state indication for the current page.",
+      "id": "feature-update-all-displayed-company-contact-information-to-match-the-provided-details-replacing-any-placeholder-address-phone-email-currently-shown-across-the-site-footer-and-contact-page-use-english-for-all-user-facing-text",
+      "title": "Update all displayed company contact information to match the provided details, replacing any placeholder address/phone/email currently shown across the site (footer and Contact page). Use English for all user-facing text.",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-create-the-home-page-with-the-specified-sections-and-copy-hero-headline-subheading-two-cta-buttons-introduction-paragraph-service-highlight-cards-4-items-why-choose-gkv-smart-energy-section-customer-testimonials-section-and-footer-contact-details",
-      "title": "Create the Home page with the specified sections and copy: hero (headline, subheading, two CTA buttons), introduction paragraph, service highlight cards (4 items), “Why Choose GKV Smart Energy” section, customer testimonials section, and footer contact details.",
+      "id": "feature-add-a-board-of-directors-section-to-the-about-page-listing-the-directors-vishnu-kumar-chaudhary-kartik-kumar-chaudhary-and-ganesh-kumar-chaudhary-each-with-a-photo-displayed-at-consistent-sizing-square-headshot-style",
+      "title": "Add a \"Board of Directors\" section to the About page listing the directors: Vishnu Kumar Chaudhary, Kartik Kumar Chaudhary, and Ganesh Kumar Chaudhary, each with a photo displayed at consistent sizing (square headshot style).",
       "reqIds": [
         "REQ-2"
       ],
       "version": 1
     },
     {
-      "id": "feature-create-the-about-us-page-with-sections-for-company-overview-vision-mission-and-experience-expertise-reliability-content-in-a-professional-trustworthy-tone-simple-english",
-      "title": "Create the About Us page with sections for company overview, Vision, Mission, and experience/expertise/reliability content in a professional, trustworthy tone (simple English).",
+      "id": "feature-ensure-the-company-logo-is-displayed-consistently-in-the-header-and-footer-using-the-existing-logo-asset-path-and-add-a-safe-fallback-alt-text-graceful-rendering-if-the-logo-image-fails-to-load",
+      "title": "Ensure the company logo is displayed consistently in the header and footer using the existing logo asset path, and add a safe fallback (alt text / graceful rendering) if the logo image fails to load.",
       "reqIds": [
         "REQ-3"
       ],
       "version": 1
     },
     {
-      "id": "feature-create-the-services-page-listing-the-required-service-offerings-presented-in-a-scannable-layout-cards-or-sections-with-short-descriptions-for-each-service",
-      "title": "Create the Services page listing the required service offerings, presented in a scannable layout (cards or sections) with short descriptions for each service.",
+      "id": "feature-add-the-required-director-photo-image-assets-as-static-files-under-frontend-public-assets-generated-and-reference-them-from-the-new-board-of-directors-section-do-not-serve-images-from-the-backend",
+      "title": "Add the required director photo image assets as static files under frontend/public/assets/generated and reference them from the new Board of Directors section (do not serve images from the backend).",
       "reqIds": [
         "REQ-4"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-create-the-projects-portfolio-page-with-a-completed-project-showcase-including-an-image-gallery-layout-and-per-project-info-areas-for-project-capacity-and-client-benefits",
-      "title": "Create the Projects / Portfolio page with a completed-project showcase including an image gallery layout and per-project info areas for project capacity and client benefits.",
-      "reqIds": [
-        "REQ-5"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-create-the-contact-us-page-with-office-address-section-phone-number-email-address-a-contact-form-name-mobile-email-message-and-a-google-map-embed-placeholder-area",
-      "title": "Create the Contact Us page with office address section, phone number, email address, a contact form (Name, Mobile, Email, Message), and a Google Map embed placeholder area.",
-      "reqIds": [
-        "REQ-6"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-persist-contact-form-submissions-in-the-motoko-canister-single-actor-backend-and-wire-the-frontend-form-submit-to-call-the-backend-show-a-success-failure-status-to-the-user-without-page-reload",
-      "title": "Persist contact form submissions in the Motoko canister (single-actor backend) and wire the frontend form submit to call the backend; show a success/failure status to the user without page reload.",
-      "reqIds": [
-        "REQ-7"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-apply-the-requested-visual-design-system-across-the-site-clean-professional-ui-white-background-with-green-blue-solar-theme-modern-typography-consistent-spacing-and-fully-mobile-tablet-responsive-layouts",
-      "title": "Apply the requested visual design system across the site: clean professional UI, white background with green & blue solar theme, modern typography, consistent spacing, and fully mobile/tablet responsive layouts.",
-      "reqIds": [
-        "REQ-8"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-implement-seo-friendly-on-page-structure-and-content-semantic-headings-per-page-keyword-aware-copy-where-natural-and-page-level-metadata-title-description-for-home-about-services-projects-and-contact",
-      "title": "Implement SEO-friendly on-page structure and content: semantic headings per page, keyword-aware copy where natural, and page-level metadata (title/description) for Home, About, Services, Projects, and Contact.",
-      "reqIds": [
-        "REQ-9"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-generate-and-include-solar-themed-static-images-for-the-home-hero-and-projects-gallery-and-render-them-as-static-assets-in-the-frontend-do-not-serve-images-from-the-backend",
-      "title": "Generate and include solar-themed static images for the Home hero and Projects gallery, and render them as static assets in the frontend (do not serve images from the backend).",
-      "reqIds": [
-        "REQ-10"
       ],
       "version": 1
     }
@@ -97,48 +47,31 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Create Home page with hero (headline/subheading), CTAs, intro, service highlight cards, Why Choose Us, testimonials, and footer contact details",
+      "summary": "Add/confirm company contact information on the site (Head Office + Branch Office addresses, phone, email).",
       "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-2",
-      "summary": "Create About Us page with company overview, vision, mission, and experience/expertise/reliability content",
+      "summary": "Add company logo to the website (header and/or relevant sections).",
       "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-3",
-      "summary": "Create Services page listing residential, commercial & industrial, installation/commissioning, maintenance & AMC, and government subsidy assistance",
+      "summary": "Create an About page section: “Board of Directors” listing Vishnu Kumar Chaudhary, Kartik Kumar Chaudhary, Ganesh Kumar Chaudhary.",
       "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-4",
-      "summary": "Create Projects/Portfolio page with completed-project showcase, image gallery layout, and project capacity/client benefits info",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-5",
-      "summary": "Create Contact Us page with address/phone/email, contact form (name, mobile, email, message), and Google Map embed placeholder",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-6",
-      "summary": "Implement clean, professional UI: white background, green & blue solar theme, modern typography, easy navigation, fully mobile/tablet responsive",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-7",
-      "summary": "Implement SEO-friendly structure and on-page content using target keywords (solar energy company, rooftop solar India, smart energy solutions)",
+      "summary": "Add directors’ photos with consistent sizing (recommended square format, e.g., 500×500 px) in the Board of Directors section.",
       "reqIds": [],
       "status": "pending"
     }
   ],
-  "projectName": "GKV Smart Energy corporate website (5-page, responsive, SEO-friendly)",
+  "gameProjectType": "none",
+  "projectName": "GKV SMART ENERGY PRIVATE LIMITED",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

@@ -2,13 +2,11 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-implement-the-overall-site-shell-with-a-consistent-header-navigation-and-footer-across-all-pages-for-gkv-smart-energy-including-a-mobile-friendly-navigation-pattern-e-g-hamburger-menu-drawer-and-clear-active-state-indication-for-the-current-page",
-      "featureTitle": "Implement the overall site shell with a consistent header navigation and footer across all pages for “GKV Smart Energy”, including a mobile-friendly navigation pattern (e.g., hamburger menu/drawer) and clear active-state indication for the current page.",
+      "featureId": "feature-update-all-displayed-company-contact-information-to-match-the-provided-details-replacing-any-placeholder-address-phone-email-currently-shown-across-the-site-footer-and-contact-page-use-english-for-all-user-facing-text",
+      "featureTitle": "Update all displayed company contact information to match the provided details, replacing any placeholder address/phone/email currently shown across the site (footer and Contact page). Use English for all user-facing text.",
       "files": [
-        "frontend/src/App.tsx",
         "frontend/src/components/SiteFooter.tsx",
-        "frontend/src/components/SiteHeader.tsx",
-        "frontend/src/components/SiteLayout.tsx"
+        "frontend/src/pages/ContactPage.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -23,11 +21,10 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-create-the-home-page-with-the-specified-sections-and-copy-hero-headline-subheading-two-cta-buttons-introduction-paragraph-service-highlight-cards-4-items-why-choose-gkv-smart-energy-section-customer-testimonials-section-and-footer-contact-details",
-      "featureTitle": "Create the Home page with the specified sections and copy: hero (headline, subheading, two CTA buttons), introduction paragraph, service highlight cards (4 items), “Why Choose GKV Smart Energy” section, customer testimonials section, and footer contact details.",
+      "featureId": "feature-add-a-board-of-directors-section-to-the-about-page-listing-the-directors-vishnu-kumar-chaudhary-kartik-kumar-chaudhary-and-ganesh-kumar-chaudhary-each-with-a-photo-displayed-at-consistent-sizing-square-headshot-style",
+      "featureTitle": "Add a \"Board of Directors\" section to the About page listing the directors: Vishnu Kumar Chaudhary, Kartik Kumar Chaudhary, and Ganesh Kumar Chaudhary, each with a photo displayed at consistent sizing (square headshot style).",
       "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/pages/HomePage.tsx"
+        "frontend/src/pages/AboutPage.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -42,11 +39,11 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-create-the-about-us-page-with-sections-for-company-overview-vision-mission-and-experience-expertise-reliability-content-in-a-professional-trustworthy-tone-simple-english",
-      "featureTitle": "Create the About Us page with sections for company overview, Vision, Mission, and experience/expertise/reliability content in a professional, trustworthy tone (simple English).",
+      "featureId": "feature-ensure-the-company-logo-is-displayed-consistently-in-the-header-and-footer-using-the-existing-logo-asset-path-and-add-a-safe-fallback-alt-text-graceful-rendering-if-the-logo-image-fails-to-load",
+      "featureTitle": "Ensure the company logo is displayed consistently in the header and footer using the existing logo asset path, and add a safe fallback (alt text / graceful rendering) if the logo image fails to load.",
       "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/pages/AboutPage.tsx"
+        "frontend/src/components/SiteFooter.tsx",
+        "frontend/src/components/SiteHeader.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -61,11 +58,10 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-create-the-services-page-listing-the-required-service-offerings-presented-in-a-scannable-layout-cards-or-sections-with-short-descriptions-for-each-service",
-      "featureTitle": "Create the Services page listing the required service offerings, presented in a scannable layout (cards or sections) with short descriptions for each service.",
+      "featureId": "feature-add-the-required-director-photo-image-assets-as-static-files-under-frontend-public-assets-generated-and-reference-them-from-the-new-board-of-directors-section-do-not-serve-images-from-the-backend",
+      "featureTitle": "Add the required director photo image assets as static files under frontend/public/assets/generated and reference them from the new Board of Directors section (do not serve images from the backend).",
       "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/pages/ServicesPage.tsx"
+        "frontend/src/pages/AboutPage.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -76,128 +72,6 @@
       ],
       "testIds": [
         "REQ-4"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-create-the-projects-portfolio-page-with-a-completed-project-showcase-including-an-image-gallery-layout-and-per-project-info-areas-for-project-capacity-and-client-benefits",
-      "featureTitle": "Create the Projects / Portfolio page with a completed-project showcase including an image gallery layout and per-project info areas for project capacity and client benefits.",
-      "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/data/projects.ts",
-        "frontend/src/pages/ProjectsPage.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-5"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-create-the-contact-us-page-with-office-address-section-phone-number-email-address-a-contact-form-name-mobile-email-message-and-a-google-map-embed-placeholder-area",
-      "featureTitle": "Create the Contact Us page with office address section, phone number, email address, a contact form (Name, Mobile, Email, Message), and a Google Map embed placeholder area.",
-      "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/ContactForm.tsx",
-        "frontend/src/pages/ContactPage.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-6"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-persist-contact-form-submissions-in-the-motoko-canister-single-actor-backend-and-wire-the-frontend-form-submit-to-call-the-backend-show-a-success-failure-status-to-the-user-without-page-reload",
-      "featureTitle": "Persist contact form submissions in the Motoko canister (single-actor backend) and wire the frontend form submit to call the backend; show a success/failure status to the user without page reload.",
-      "files": [
-        "frontend/src/components/ContactForm.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-7"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-apply-the-requested-visual-design-system-across-the-site-clean-professional-ui-white-background-with-green-blue-solar-theme-modern-typography-consistent-spacing-and-fully-mobile-tablet-responsive-layouts",
-      "featureTitle": "Apply the requested visual design system across the site: clean professional UI, white background with green & blue solar theme, modern typography, consistent spacing, and fully mobile/tablet responsive layouts.",
-      "files": [
-        "frontend/src/components/SiteFooter.tsx",
-        "frontend/src/components/SiteHeader.tsx",
-        "frontend/src/index.css",
-        "frontend/tailwind.config.js"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-8"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-implement-seo-friendly-on-page-structure-and-content-semantic-headings-per-page-keyword-aware-copy-where-natural-and-page-level-metadata-title-description-for-home-about-services-projects-and-contact",
-      "featureTitle": "Implement SEO-friendly on-page structure and content: semantic headings per page, keyword-aware copy where natural, and page-level metadata (title/description) for Home, About, Services, Projects, and Contact.",
-      "files": [
-        "frontend/src/lib/seo.ts",
-        "frontend/src/pages/AboutPage.tsx",
-        "frontend/src/pages/ContactPage.tsx",
-        "frontend/src/pages/HomePage.tsx",
-        "frontend/src/pages/ProjectsPage.tsx",
-        "frontend/src/pages/ServicesPage.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-9"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-generate-and-include-solar-themed-static-images-for-the-home-hero-and-projects-gallery-and-render-them-as-static-assets-in-the-frontend-do-not-serve-images-from-the-backend",
-      "featureTitle": "Generate and include solar-themed static images for the Home hero and Projects gallery, and render them as static assets in the frontend (do not serve images from the backend).",
-      "files": [
-        "frontend/src/components/SiteHeader.tsx",
-        "frontend/src/pages/HomePage.tsx",
-        "frontend/src/pages/ProjectsPage.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-10"
       ],
       "confidence": "high"
     }
