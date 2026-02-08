@@ -1,33 +1,26 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Project involves generating/displaying a photo/image based on a specified kW value and allowing the user to upload and place their logo.",
+  "summary": "Website project with a request to publish/deploy the web app; deployment currently failing.",
   "architectural_notes": [],
-  "known_issues": [],
-  "isFixRequest": false,
-  "imageRequirements": "## Required Images\n- Rooftop solar installation photo/illustration for small system size (solar-kw-02.dim_1200x600.png)\n- Rooftop solar installation photo/illustration for medium-small system size (solar-kw-05.dim_1200x600.png)\n- Rooftop solar installation photo/illustration for medium system size (solar-kw-10.dim_1200x600.png)\n- Rooftop solar installation photo/illustration for large system size (solar-kw-20.dim_1200x600.png)\n- Rooftop solar installation photo/illustration for very large system size (solar-kw-50.dim_1200x600.png)\n\n## Edit Images\n- Replace existing logo artwork using the uploaded logo (gkv-logo.dim_512x512.png > gkv-logo.dim_512x512.png)",
+  "known_issues": [
+    "Deployment/build is failing with an unspecified deployment error."
+  ],
+  "isFixRequest": true,
   "existing_features": [
     {
-      "id": "feature-replace-the-website-logo-with-the-user-uploaded-logo-so-that-the-header-and-footer-display-the-new-logo-consistently-including-mobile-header-without-showing-the-fallback-gkv-text-logo-unless-the-image-fails-to-load",
-      "title": "Replace the website logo with the user-uploaded logo so that the header and footer display the new logo consistently (including mobile header), without showing the fallback 'GKV' text logo unless the image fails to load.",
+      "id": "feature-investigate-the-current-deployment-build-failure-and-implement-the-necessary-code-config-fixes-so-the-project-builds-successfully-and-can-be-deployed-published-without-errors",
+      "title": "Investigate the current deployment/build failure and implement the necessary code/config fixes so the project builds successfully and can be deployed (published) without errors.",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-on-the-solar-calculator-page-display-a-representative-solar-installation-image-that-automatically-matches-the-calculated-system-size-kw-so-that-the-user-sees-the-photo-for-that-many-kw",
-      "title": "On the Solar Calculator page, display a representative solar installation image that automatically matches the calculated system size (kW) so that the user sees 'the photo for that many kW'.",
+      "id": "feature-add-a-clear-english-project-local-publish-deploy-guide-that-documents-the-exact-commands-and-prerequisites-needed-to-publish-the-web-app-and-how-to-verify-it-is-live",
+      "title": "Add a clear, English, project-local publish/deploy guide that documents the exact commands and prerequisites needed to publish the web app and how to verify it is live.",
       "reqIds": [
         "REQ-2"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-the-required-static-image-assets-under-frontend-public-assets-generated-and-wire-them-into-the-ui-do-not-serve-generated-images-via-the-backend",
-      "title": "Add the required static image assets under `frontend/public/assets/generated` and wire them into the UI (do not serve generated images via the backend).",
-      "reqIds": [
-        "REQ-3"
       ],
       "version": 1
     }
@@ -35,19 +28,20 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Display/show an image (photo) corresponding to the specified kW value (\"jitane kw ka hai utane kw ka photo dikhaye\").",
+      "summary": "Publish/deploy the website (make the web app live)",
       "reqIds": [],
       "status": "pending"
     },
     {
-      "id": "AR-2",
-      "summary": "Support user logo upload and placement in the latest version/build.",
-      "reqIds": [],
+      "id": "AR-4",
+      "summary": "Ensure the deployed site correctly serves static assets and renders the site header and footer without broken images (including the configured brand logo path) in production.",
+      "reqIds": [
+        "REQ-3"
+      ],
       "status": "pending"
     }
   ],
-  "gameProjectType": "none",
-  "projectName": "Show a kW-specific solar photo and replace site logo with uploaded logo",
+  "projectName": "Fix deployment failure and publish the website",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

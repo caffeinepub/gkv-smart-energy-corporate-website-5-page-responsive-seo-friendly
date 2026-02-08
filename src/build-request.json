@@ -1,89 +1,81 @@
 {
   "kind": "build_request",
-  "title": "Show a kW-specific solar photo and replace site logo with uploaded logo",
+  "title": "Fix deployment failure and publish the website",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Replace the website logo with the user-uploaded logo so that the header and footer display the new logo consistently (including mobile header), without showing the fallback 'GKV' text logo unless the image fails to load.",
-      "target": "frontend",
+      "text": "Investigate the current deployment/build failure and implement the necessary code/config fixes so the project builds successfully and can be deployed (published) without errors.",
+      "target": "both",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-1"
         ],
         "quotes": [
-          "jitane kw ka hai utane kw ka photo dikhaye ok mera logo upload kare"
+          "publis this web",
+          "🙏 Something went wrong with the deployment",
+          "please solve error"
         ]
       },
       "acceptanceCriteria": [
-        "The logo rendered in SiteHeader uses the same path as before (currently `/assets/generated/gkv-logo.dim_512x512.png`) but displays the new uploaded logo artwork.",
-        "The logo rendered in SiteFooter matches the header logo and is visually consistent.",
-        "If the logo image fails to load, the existing fallback UI still appears (no regression)."
+        "A production build completes successfully with no TypeScript, bundler, or Motoko compile errors.",
+        "A deploy/publish run completes successfully (no deployment error) and outputs a live URL/canister front-end that loads in the browser.",
+        "The home page and at least these routes load without runtime errors: /, /about, /services, /projects, /contact, /calculator, /subsidies, /how-it-works."
       ]
     },
     {
       "id": "REQ-2",
-      "text": "On the Solar Calculator page, display a representative solar installation image that automatically matches the calculated system size (kW) so that the user sees 'the photo for that many kW'.",
-      "target": "frontend",
+      "text": "Add a clear, English, project-local publish/deploy guide that documents the exact commands and prerequisites needed to publish the web app and how to verify it is live.",
+      "target": "both",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-1"
         ],
         "quotes": [
-          "jitane kw ka hai utane kw ka photo dikhaye"
+          "publis this web"
         ]
       },
       "acceptanceCriteria": [
-        "Calculator page shows a kW-matched image near the results (based on `results.systemSizeKW`).",
-        "The image selection is deterministic via defined kW ranges (e.g., <=2 kW, 3–5 kW, 6–10 kW, 11–20 kW, >20 kW).",
-        "If an image is missing for a range, a safe fallback image is shown and the page layout does not break."
+        "Repository includes an English deployment guide (e.g., README section) with step-by-step commands to build and deploy.",
+        "The guide includes a verification checklist (e.g., which URLs/routes to open) to confirm the deployment is successful."
       ]
     },
     {
       "id": "REQ-3",
-      "text": "Add the required static image assets under `frontend/public/assets/generated` and wire them into the UI (do not serve generated images via the backend).",
+      "text": "Ensure the deployed site correctly serves static assets and renders the site header and footer without broken images (including the configured brand logo path) in production.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-1"
         ],
         "quotes": [
-          "jitane kw ka hai utane kw ka photo dikhaye ok mera logo upload kare"
+          "publis this web"
         ]
       },
       "acceptanceCriteria": [
-        "All newly generated images are placed under `frontend/public/assets/generated` and can be loaded by the browser via `/assets/generated/...` paths.",
-        "No backend endpoints or storage are introduced for these images."
+        "After deployment, the SiteHeader and SiteFooter render without broken image icons.",
+        "Static assets referenced from the UI load successfully in the deployed environment (no 404s for key images/styles/scripts during normal navigation)."
       ]
     }
   ],
   "constraints": [
-    "Do not edit files under `frontend/src/components/ui` (compose existing UI components instead).",
-    "Do not modify `frontend/src/hooks/useInternetIdentity.ts(x)`, `frontend/src/hooks/useActor.ts`, or `frontend/src/main.tsx` (immutable paths).",
-    "Backend must remain a single Motoko actor in `backend/main.mo`; only add a migration if persistent state changes (not expected for this request)."
+    "Backend must remain a single Motoko actor in backend/main.mo (no additional backend services).",
+    "Do not edit any files under frontend/src/components/ui or any immutable paths listed in SYSTEM_CONTEXT (compose them instead).",
+    "Use English for any user-facing text added or modified as part of this request."
   ],
   "nonGoals": [
-    "Implementing runtime user logo upload functionality inside the app (this request is handled by replacing the deployed static logo asset using the uploaded file).",
-    "Adding new backend storage or admin panels for managing kW images."
+    "Adding new product features/pages beyond what is required to fix deployment and publish the existing site.",
+    "Integrating third-party hosting providers or non-Internet-Computer deployment targets.",
+    "Adding third-party authentication providers (only Internet Identity is supported)."
   ],
   "imageRequirements": {
-    "required": [
-      "Rooftop solar installation photo/illustration for small system size (solar-kw-02.dim_1200x600.png)",
-      "Rooftop solar installation photo/illustration for medium-small system size (solar-kw-05.dim_1200x600.png)",
-      "Rooftop solar installation photo/illustration for medium system size (solar-kw-10.dim_1200x600.png)",
-      "Rooftop solar installation photo/illustration for large system size (solar-kw-20.dim_1200x600.png)",
-      "Rooftop solar installation photo/illustration for very large system size (solar-kw-50.dim_1200x600.png)"
-    ],
-    "edits": [
-      "Replace existing logo artwork using the uploaded logo (gkv-logo.dim_512x512.png > gkv-logo.dim_512x512.png)"
-    ]
+    "required": [],
+    "edits": []
   },
   "userProfileUpdate": {
     "goalsToAdd": [],
     "goalsToRemove": [],
-    "preferencesToAdd": [
-      "Use English for user-facing text"
-    ],
+    "preferencesToAdd": [],
     "preferencesToRemove": [],
     "miscToAdd": [],
     "miscToRemove": [],

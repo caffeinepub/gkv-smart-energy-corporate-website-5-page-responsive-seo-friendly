@@ -1,10 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Update the site branding to use the uploaded GKV Smart Energy logo everywhere, and show a solar installation image on the Solar Calculator page that matches the calculated system size (kW).
+**Goal:** Fix the current deployment/build failure so the website can be successfully published, and document the exact deploy steps.
 
 **Planned changes:**
-- Replace the existing static logo asset used by the header and footer so the new uploaded logo artwork appears consistently across desktop and mobile (while keeping the current fallback text if the image fails to load).
-- Add kW-range-based solar installation images under `frontend/public/assets/generated` and display the appropriate image on the Solar Calculator results based on `results.systemSizeKW`, with a safe fallback if an image is missing.
+- Investigate and resolve the production build/deploy errors (TypeScript/bundler and/or Motoko compile issues) so the app builds and deploys without failures.
+- Add an English, project-local publish/deploy guide with prerequisites, exact commands, and a verification checklist.
+- Ensure production deployment correctly serves static assets so the site header/footer render without broken images and key routes load reliably.
 
-**User-visible outcome:** The website header/footer show the new GKV Smart Energy logo, and the Solar Calculator shows a representative solar installation photo that corresponds to the calculated kW size.
+**User-visible outcome:** The site can be built and deployed successfully to a live URL, with working navigation for /, /about, /services, /projects, /contact, /calculator, /subsidies, and /how-it-works, and no broken header/footer assets in production.

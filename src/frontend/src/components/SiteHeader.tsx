@@ -1,6 +1,6 @@
 import { Link, useRouterState } from '@tanstack/react-router';
 import { Menu, X, Phone, MessageCircle } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 import {
@@ -32,6 +32,11 @@ export default function SiteHeader() {
     'Hello! I am interested in solar energy solutions from GKV Smart Energy. Please provide more information.'
   );
 
+  // Reset logo error when logo path changes
+  useEffect(() => {
+    setLogoError(false);
+  }, [BRAND.logoPath]);
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
@@ -42,6 +47,7 @@ export default function SiteHeader() {
               alt={BRAND.name}
               className="h-10 w-10 object-contain"
               onError={() => setLogoError(true)}
+              onLoad={() => setLogoError(false)}
             />
           ) : (
             <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center">

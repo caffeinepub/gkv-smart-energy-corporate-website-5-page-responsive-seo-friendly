@@ -1,10 +1,15 @@
 import { Mail, MapPin, Phone } from 'lucide-react';
 import { Link } from '@tanstack/react-router';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BRAND } from '@/lib/brand';
 
 export default function SiteFooter() {
   const [logoError, setLogoError] = useState(false);
+
+  // Reset logo error when logo path changes
+  useEffect(() => {
+    setLogoError(false);
+  }, [BRAND.logoPath]);
 
   return (
     <footer className="border-t bg-muted/30">
@@ -19,6 +24,7 @@ export default function SiteFooter() {
                   alt={BRAND.name}
                   className="h-8 w-8 object-contain"
                   onError={() => setLogoError(true)}
+                  onLoad={() => setLogoError(false)}
                 />
               ) : (
                 <div className="h-8 w-8 rounded bg-primary/10 flex items-center justify-center">

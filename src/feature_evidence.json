@@ -2,12 +2,14 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-replace-the-website-logo-with-the-user-uploaded-logo-so-that-the-header-and-footer-display-the-new-logo-consistently-including-mobile-header-without-showing-the-fallback-gkv-text-logo-unless-the-image-fails-to-load",
-      "featureTitle": "Replace the website logo with the user-uploaded logo so that the header and footer display the new logo consistently (including mobile header), without showing the fallback 'GKV' text logo unless the image fails to load.",
+      "featureId": "feature-investigate-the-current-deployment-build-failure-and-implement-the-necessary-code-config-fixes-so-the-project-builds-successfully-and-can-be-deployed-published-without-errors",
+      "featureTitle": "Investigate the current deployment/build failure and implement the necessary code/config fixes so the project builds successfully and can be deployed (published) without errors.",
       "files": [
-        "frontend/src/components/SiteFooter.tsx",
-        "frontend/src/components/SiteHeader.tsx",
-        "frontend/src/lib/brand.ts"
+        "frontend/src/components/home/HeroSlider.tsx",
+        "frontend/src/lib/assets.ts",
+        "frontend/src/lib/brand.ts",
+        "frontend/src/lib/solarKwImages.ts",
+        "frontend/src/pages/HowItWorksPage.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -22,11 +24,10 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-on-the-solar-calculator-page-display-a-representative-solar-installation-image-that-automatically-matches-the-calculated-system-size-kw-so-that-the-user-sees-the-photo-for-that-many-kw",
-      "featureTitle": "On the Solar Calculator page, display a representative solar installation image that automatically matches the calculated system size (kW) so that the user sees 'the photo for that many kW'.",
+      "featureId": "feature-add-a-clear-english-project-local-publish-deploy-guide-that-documents-the-exact-commands-and-prerequisites-needed-to-publish-the-web-app-and-how-to-verify-it-is-live",
+      "featureTitle": "Add a clear, English, project-local publish/deploy guide that documents the exact commands and prerequisites needed to publish the web app and how to verify it is live.",
       "files": [
-        "frontend/src/lib/solarKwImages.ts",
-        "frontend/src/pages/CalculatorPage.tsx"
+        "frontend/DEPLOYMENT.md"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -37,24 +38,6 @@
       ],
       "testIds": [
         "REQ-2"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-the-required-static-image-assets-under-frontend-public-assets-generated-and-wire-them-into-the-ui-do-not-serve-generated-images-via-the-backend",
-      "featureTitle": "Add the required static image assets under `frontend/public/assets/generated` and wire them into the UI (do not serve generated images via the backend).",
-      "files": [
-        "frontend/src/lib/solarKwImages.ts"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-3"
       ],
       "confidence": "high"
     }

@@ -190,8 +190,8 @@ export default function CalculatorPage() {
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-3xl font-bold text-primary">{formatCurrency(results.finalCost)}</p>
-                  <p className="text-sm text-muted-foreground mt-1">After subsidy</p>
+                  <p className="text-3xl font-bold text-primary">{formatCurrency(results.projectCost)}</p>
+                  <p className="text-sm text-muted-foreground mt-1">Before subsidy</p>
                 </CardContent>
               </Card>
 
@@ -205,58 +205,67 @@ export default function CalculatorPage() {
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-3xl font-bold text-primary">{formatCurrency(results.subsidy)}</p>
-                  <p className="text-sm text-muted-foreground mt-1">Government benefit</p>
+                  <p className="text-3xl font-bold text-green-600">{formatCurrency(results.subsidy)}</p>
+                  <p className="text-sm text-muted-foreground mt-1">Government support</p>
                 </CardContent>
               </Card>
             </div>
 
-            {/* Assumptions Card */}
-            <Card className="bg-muted/50">
+            {/* Final Cost Highlight */}
+            <Card className="border-2 border-primary bg-gradient-to-br from-primary/5 to-primary/10">
               <CardHeader>
-                <CardTitle className="text-lg">Calculation Assumptions</CardTitle>
-                <CardDescription>
-                  These calculations are based on the following industry-standard assumptions
-                </CardDescription>
+                <CardTitle className="text-2xl text-center">Your Final Investment</CardTitle>
               </CardHeader>
-              <CardContent>
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div className="space-y-1">
-                    <p className="text-sm font-medium">Electricity Tariff</p>
-                    <p className="text-sm text-muted-foreground">
-                      ₹{CALCULATOR_ASSUMPTIONS.electricityTariff} per unit
-                    </p>
-                  </div>
-                  <div className="space-y-1">
-                    <p className="text-sm font-medium">Annual Generation</p>
-                    <p className="text-sm text-muted-foreground">
-                      {formatNumber(CALCULATOR_ASSUMPTIONS.annualGenerationPerKW)} units per kW
-                    </p>
-                  </div>
-                  <div className="space-y-1">
-                    <p className="text-sm font-medium">Space Required</p>
-                    <p className="text-sm text-muted-foreground">
-                      {CALCULATOR_ASSUMPTIONS.spacePerKW} sq ft per kW
-                    </p>
-                  </div>
-                  <div className="space-y-1">
-                    <p className="text-sm font-medium">System Efficiency</p>
-                    <p className="text-sm text-muted-foreground">
-                      {(CALCULATOR_ASSUMPTIONS.systemEfficiency * 100).toFixed(0)}%
-                    </p>
-                  </div>
+              <CardContent className="text-center">
+                <div className="inline-flex items-center justify-center gap-3 mb-2">
+                  <IndianRupee className="h-8 w-8 text-primary" />
+                  <p className="text-5xl font-bold text-primary">{formatCurrency(results.finalCost)}</p>
                 </div>
-                <p className="text-xs text-muted-foreground mt-4">
-                  * Actual results may vary based on location, weather conditions, and system quality.
-                  Contact us for a detailed site assessment.
+                <p className="text-lg text-muted-foreground">After Government Subsidy</p>
+                <p className="text-sm text-muted-foreground mt-2">
+                  Save {formatCurrency(results.annualSavings)} per year • Payback in ~{Math.ceil(results.finalCost / results.annualSavings)} years
                 </p>
               </CardContent>
             </Card>
 
-            {/* CTA Section */}
-            <div className="mt-12">
-              <BookFreeConsultationCTA variant="default" />
-            </div>
+            {/* Calculation Assumptions */}
+            <Card className="border-2">
+              <CardHeader>
+                <CardTitle className="text-xl">Calculation Assumptions</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <div className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
+                    <span className="text-sm text-muted-foreground">Base cost per kW</span>
+                    <span className="font-semibold">{formatCurrency(CALCULATOR_ASSUMPTIONS.baseCostPerKW)}</span>
+                  </div>
+                  <div className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
+                    <span className="text-sm text-muted-foreground">Electricity tariff</span>
+                    <span className="font-semibold">₹{CALCULATOR_ASSUMPTIONS.electricityTariff}/unit</span>
+                  </div>
+                  <div className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
+                    <span className="text-sm text-muted-foreground">Annual generation per kW</span>
+                    <span className="font-semibold">{formatNumber(CALCULATOR_ASSUMPTIONS.annualGenerationPerKW)} units</span>
+                  </div>
+                  <div className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
+                    <span className="text-sm text-muted-foreground">Space per kW</span>
+                    <span className="font-semibold">{CALCULATOR_ASSUMPTIONS.spacePerKW} sq ft</span>
+                  </div>
+                </div>
+                <p className="text-xs text-muted-foreground mt-4 text-center">
+                  * These are conservative estimates. Actual values may vary based on location, panel quality, and installation conditions.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 bg-gradient-to-br from-green-50 via-blue-50 to-white">
+        <div className="container">
+          <div className="mx-auto max-w-4xl">
+            <BookFreeConsultationCTA variant="default" />
           </div>
         </div>
       </section>

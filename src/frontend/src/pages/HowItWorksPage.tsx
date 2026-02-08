@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Sun, Zap, Activity, Home, IndianRupee, Calendar, Coins } from 'lucide-react';
 import { setSEO } from '@/lib/seo';
 import BookFreeConsultationCTA from '@/components/BookFreeConsultationCTA';
+import { getGeneratedAssetUrl } from '@/lib/assets';
 
 const processSteps = [
   {
@@ -68,7 +69,7 @@ export default function HowItWorksPage() {
             <Card className="border-2">
               <CardContent className="pt-6">
                 <img
-                  src="/assets/generated/grid-connected-working-diagram-hindi.dim_1400x900.png"
+                  src={getGeneratedAssetUrl('grid-connected-working-diagram-hindi.dim_1400x900.png')}
                   alt="Grid connected solar system working diagram showing the flow from solar panels to inverter to meter to grid with Hindi labels"
                   className="w-full h-auto rounded-lg"
                 />
@@ -216,16 +217,16 @@ export default function HowItWorksPage() {
                     <div>
                       <div className="font-semibold mb-1">Low Maintenance</div>
                       <p className="text-sm text-muted-foreground">
-                        Minimal maintenance with long-lasting components
+                        Minimal maintenance required, just periodic cleaning
                       </p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <Zap className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                     <div>
-                      <div className="font-semibold mb-1">Quick ROI</div>
+                      <div className="font-semibold mb-1">Increase Property Value</div>
                       <p className="text-sm text-muted-foreground">
-                        Recover your investment in 3-5 years
+                        Solar installations increase your property's market value
                       </p>
                     </div>
                   </div>
@@ -237,13 +238,10 @@ export default function HowItWorksPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-20 bg-gradient-to-br from-blue-50 to-green-50">
+      <section className="py-16 md:py-20 bg-muted/30">
         <div className="container">
           <div className="mx-auto max-w-4xl">
-            <BookFreeConsultationCTA
-              title="Ready to Install Solar?"
-              description="Get a free site assessment and learn how solar can work for your home or business"
-            />
+            <BookFreeConsultationCTA />
           </div>
         </div>
       </section>

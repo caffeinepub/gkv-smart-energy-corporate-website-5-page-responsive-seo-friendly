@@ -1,97 +1,136 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "kW-matched calculator image and updated static logo asset",
+  "title": "Resolve frontend build/deploy issues, ensure production asset reliability, and add deploy guide",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Ensure header and footer consistently render the updated static logo image, keeping the existing fallback only for image-load failure.",
+      "summary": "Fix frontend build/runtime issues that block production build/deploy and ensure required routes render without errors.",
       "acceptanceCriteria": [
-        "The logo rendered in SiteHeader uses the same path as before (currently `/assets/generated/gkv-logo.dim_512x512.png`) but displays the new uploaded logo artwork.",
-        "The logo rendered in SiteFooter matches the header logo and is visually consistent.",
-        "If the logo image fails to load, the existing fallback UI still appears (no regression)."
+        "A production build completes successfully with no TypeScript, bundler, or Motoko compile errors.",
+        "A deploy/publish run completes successfully (no deployment error) and outputs a live URL/canister front-end that loads in the browser.",
+        "The home page and at least these routes load without runtime errors: /, /about, /services, /projects, /contact, /calculator, /subsidies, /how-it-works."
       ],
       "file_operations": [
         {
-          "path": "frontend/public/assets/generated/gkv-logo.dim_512x512.png",
-          "operation": "modify",
-          "description": "Replace the existing logo artwork file with the user-uploaded logo while keeping the same filename/path so all existing references continue to work."
+          "path": "frontend/src/lib/assets.ts",
+          "operation": "create",
+          "description": "Add a small helper to generate correct production-safe static asset URLs (respecting any configured base path) so the app works when deployed under different base prefixes."
         },
         {
           "path": "frontend/src/lib/brand.ts",
-          "operation": "create",
-          "description": "Add a small shared constant (e.g., exported logo image path) so SiteHeader and SiteFooter reference the exact same logo path and stay consistent."
+          "operation": "modify",
+          "description": "Remove non-deterministic cache-busting (Date.now()) and build the brand logo URL via the shared asset URL helper to prevent broken logo paths and stabilize production builds."
         },
         {
-          "path": "frontend/src/components/SiteHeader.tsx",
+          "path": "frontend/src/components/home/HeroSlider.tsx",
           "operation": "modify",
-          "description": "Use the shared logo path constant for the header logo image while preserving the current onError fallback behavior (shows 'GKV' only if the image fails to load)."
+          "description": "Update slide image src values to use the shared asset URL helper so hero images resolve correctly in production deployments."
         },
         {
-          "path": "frontend/src/components/SiteFooter.tsx",
+          "path": "frontend/src/lib/solarKwImages.ts",
           "operation": "modify",
-          "description": "Use the shared logo path constant for the footer logo image while preserving the current onError fallback behavior (shows 'GKV' only if the image fails to load)."
+          "description": "Update kW-mapped image paths and fallback image path to use the shared asset URL helper so calculator imagery resolves correctly after deployment."
+        },
+        {
+          "path": "frontend/src/pages/HowItWorksPage.tsx",
+          "operation": "modify",
+          "description": "Update the working diagram image src to use the shared asset URL helper to avoid 404s in production for deep-linked routes."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Review and adjust router configuration as needed for production stability (e.g., base handling and any missing router options) so navigation to required routes does not cause runtime errors after deployment."
         }
       ]
     },
     {
       "id": "REQ-2",
-      "summary": "Show a deterministic kW-range-matched solar installation image on the Solar Calculator results based on results.systemSizeKW, with a safe fallback.",
+      "summary": "Add an English, project-local publish/deploy guide with exact commands, prerequisites, and a verification checklist.",
       "acceptanceCriteria": [
-        "Calculator page shows a kW-matched image near the results (based on `results.systemSizeKW`).",
-        "The image selection is deterministic via defined kW ranges (e.g., <=2 kW, 3–5 kW, 6–10 kW, 11–20 kW, >20 kW).",
-        "If an image is missing for a range, a safe fallback image is shown and the page layout does not break."
+        "Repository includes an English deployment guide (e.g., README section) with step-by-step commands to build and deploy.",
+        "The guide includes a verification checklist (e.g., which URLs/routes to open) to confirm the deployment is successful."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/lib/solarKwImages.ts",
+          "path": "frontend/DEPLOYMENT.md",
           "operation": "create",
-          "description": "Add a helper that maps system size (kW) to a deterministic image path using defined kW ranges and provides a fallback image path if a range image is unavailable."
-        },
-        {
-          "path": "frontend/src/pages/CalculatorPage.tsx",
-          "operation": "modify",
-          "description": "Render a representative solar installation image near the results section using the kW-to-image helper based on results.systemSizeKW, and add an image-load fallback so layout remains stable if an image cannot be loaded."
+          "description": "Document prerequisites and exact commands to build and publish on the Internet Computer (including a post-deploy verification checklist covering: /, /about, /services, /projects, /contact, /calculator, /subsidies, /how-it-works)."
         }
       ]
     },
     {
       "id": "REQ-3",
-      "summary": "Add the required static generated images under frontend/public/assets/generated and wire them into the UI via /assets/generated paths only.",
+      "summary": "Ensure deployed site serves static assets correctly and header/footer render without broken images in production.",
       "acceptanceCriteria": [
-        "All newly generated images are placed under `frontend/public/assets/generated` and can be loaded by the browser via `/assets/generated/...` paths.",
-        "No backend endpoints or storage are introduced for these images."
+        "After deployment, the SiteHeader and SiteFooter render without broken image icons.",
+        "Static assets referenced from the UI load successfully in the deployed environment (no 404s for key images/styles/scripts during normal navigation)."
       ],
       "file_operations": [
         {
+          "path": "frontend/src/components/SiteHeader.tsx",
+          "operation": "modify",
+          "description": "Ensure the header logo uses the brand logo URL built via the shared asset URL helper and retains graceful fallback rendering when the asset fails to load."
+        },
+        {
+          "path": "frontend/src/components/SiteFooter.tsx",
+          "operation": "modify",
+          "description": "Ensure the footer logo uses the brand logo URL built via the shared asset URL helper and retains graceful fallback rendering when the asset fails to load."
+        },
+        {
+          "path": "frontend/public/assets/generated/gkv-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Ensure the configured brand logo file exists in the deployed static asset bundle at this exact path."
+        },
+        {
+          "path": "frontend/public/assets/generated/gkv-hero-banner-1.dim_1600x900.png",
+          "operation": "create",
+          "description": "Ensure this referenced hero image exists in the deployed static asset bundle at this exact path."
+        },
+        {
+          "path": "frontend/public/assets/generated/gkv-hero-banner-2.dim_1600x900.png",
+          "operation": "create",
+          "description": "Ensure this referenced hero image exists in the deployed static asset bundle at this exact path."
+        },
+        {
+          "path": "frontend/public/assets/generated/gkv-hero-banner-3.dim_1600x900.png",
+          "operation": "create",
+          "description": "Ensure this referenced hero image exists in the deployed static asset bundle at this exact path."
+        },
+        {
+          "path": "frontend/public/assets/generated/grid-connected-working-diagram-hindi.dim_1400x900.png",
+          "operation": "create",
+          "description": "Ensure this referenced infographic image exists in the deployed static asset bundle at this exact path."
+        },
+        {
           "path": "frontend/public/assets/generated/solar-kw-02.dim_1200x600.png",
           "operation": "create",
-          "description": "Add static generated image asset for small system size (<=2 kW) to be used by the calculator UI via /assets/generated paths."
+          "description": "Ensure this referenced calculator image exists in the deployed static asset bundle at this exact path."
         },
         {
           "path": "frontend/public/assets/generated/solar-kw-05.dim_1200x600.png",
           "operation": "create",
-          "description": "Add static generated image asset for medium-small system size (3–5 kW) to be used by the calculator UI via /assets/generated paths."
+          "description": "Ensure this referenced calculator image exists in the deployed static asset bundle at this exact path."
         },
         {
           "path": "frontend/public/assets/generated/solar-kw-10.dim_1200x600.png",
           "operation": "create",
-          "description": "Add static generated image asset for medium system size (6–10 kW) to be used by the calculator UI via /assets/generated paths."
+          "description": "Ensure this referenced calculator image exists in the deployed static asset bundle at this exact path."
         },
         {
           "path": "frontend/public/assets/generated/solar-kw-20.dim_1200x600.png",
           "operation": "create",
-          "description": "Add static generated image asset for large system size (11–20 kW) to be used by the calculator UI via /assets/generated paths."
+          "description": "Ensure this referenced calculator image exists in the deployed static asset bundle at this exact path."
         },
         {
           "path": "frontend/public/assets/generated/solar-kw-50.dim_1200x600.png",
           "operation": "create",
-          "description": "Add static generated image asset for very large system size (>20 kW) to be used by the calculator UI via /assets/generated paths."
+          "description": "Ensure this referenced calculator image exists in the deployed static asset bundle at this exact path."
         },
         {
-          "path": "frontend/src/lib/solarKwImages.ts",
-          "operation": "modify",
-          "description": "Wire the exact generated filenames into the kW-range mapping and ensure the fallback uses a safe existing generated image path if any range image is unavailable at runtime."
+          "path": "frontend/public/assets/generated/gkv-project-01.dim_1200x800.png",
+          "operation": "create",
+          "description": "Ensure this referenced fallback/project image exists in the deployed static asset bundle at this exact path."
         }
       ]
     }
