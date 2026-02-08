@@ -1,95 +1,169 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Company contact info refresh and Board of Directors section with static photos",
+  "title": "GKV Smart Energy frontend expansion: subsidies table, Hindi working diagram, services SEO pages, calculator, and consultation CTA",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Replace all placeholder company address/phone/email across the footer and Contact page with the provided English contact details and correct tel/mailto links.",
+      "summary": "Upgrade /subsidies with a Central vs State comparison table, PM Surya Ghar + state policy explanation, and example total-subsidy summary cards while preserving existing SEO/layout.",
       "acceptanceCriteria": [
-        "Site footer contact section no longer shows placeholder details (e.g., \"123 Solar Street...\", \"+91 98765 43210\", \"info@gkvsmartenergy.com\") and instead displays the provided Mobile (+91 77180 53222) and Email (gkvsmartenergy@gmail.com).",
-        "Contact page displays both the Head Office address (Village + Post – Saurath, Rahika, Madhubani – 847213, Bihar, India) and the Branch Office address (Maruti Nagar Colony, Kashi Vishwanath Area, Varanasi – 221005, Uttar Pradesh, India).",
-        "Phone link uses tel:+917718053222 and email link uses mailto:gkvsmartenergy@gmail.com.",
-        "Any map/visit placeholder text on the Contact page references the provided office location(s) rather than the existing placeholder address."
+        "Visiting /subsidies shows a table with rows/columns that clearly compare Central vs State subsidy for 1kW, 2kW, 3kW (and includes a combined/total column or equivalent clarity).",
+        "/subsidies includes an English section that explains PM Surya Ghar and state policy at a high level (no placeholders like “lorem ipsum”).",
+        "/subsidies includes three visually distinct summary cards displaying ₹45,000, ₹90,000, and ₹1,08,000 as example total subsidies.",
+        "The existing page layout, header/footer, and SEO metadata remain intact and consistent with the site style."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/SiteFooter.tsx",
+          "path": "frontend/src/pages/SubsidiesPage.tsx",
           "operation": "modify",
-          "description": "Update the footer Contact Us block to show the provided Mobile (+91 77180 53222) and Email (gkvsmartenergy@gmail.com) and replace the placeholder address text with the provided office location details (at minimum, remove the current placeholder address/phone/email)."
+          "description": "Replace the screenshot-only content with a clear Central + State subsidy comparison table for 1kW/2kW/3kW, add an English explanation section for PM Surya Ghar + state policy, and add three prominent “Total Subsidy” summary cards (₹45,000 / ₹90,000 / ₹1,08,000). Use shadcn-ui Card (and Table if present) for consistent styling; verify the component's usage instructions before implementing. Keep the existing setSEO call and overall page layout structure consistent."
         },
         {
-          "path": "frontend/src/pages/ContactPage.tsx",
-          "operation": "modify",
-          "description": "Update Contact page content to display both Head Office and Branch Office addresses, change the phone link to tel:+917718053222, change the email link to mailto:gkvsmartenergy@gmail.com, and update the Visit Our Office placeholder text to reference the provided location(s). Continue using existing shadcn-ui Card layout components for these info panels; verify the component's usage instructions before implementing."
+          "path": "frontend/src/components/BookFreeConsultationCTA.tsx",
+          "operation": "create",
+          "description": "Create a reusable “Book Free Consultation” CTA block that can be embedded on /subsidies (and other key pages) without changing global layout. Use shadcn-ui Button (and optional Card) to present WhatsApp/Call/Form actions consistently; verify the component's usage instructions before implementing."
         }
       ]
     },
     {
       "id": "REQ-2",
-      "summary": "Add a responsive Board of Directors section on the About page showing three directors with consistently sized square headshots.",
+      "summary": "Add a responsive grid-connected working diagram section using a new Hindi-labeled infographic plus three nearby benefit callouts with icons.",
       "acceptanceCriteria": [
-        "About page includes a clearly labeled \"Board of Directors\" section.",
-        "The section lists exactly these names: Vishnu Kumar Chaudhary, Kartik Kumar Chaudhary, Ganesh Kumar Chaudhary.",
-        "Each director is shown with an image and the images are rendered consistently in a square aspect ratio (1:1) with uniform on-page dimensions.",
-        "Layout is responsive: directors display as a single column on small screens and a multi-column grid on larger screens without overflow or distortion."
+        "A new infographic image asset with Hindi labels is added under frontend/public/assets/generated and is used on an appropriate page/section (either /how-it-works or a dedicated section as part of the site).",
+        "The infographic visually communicates the sequence Solar Panel → Inverter → Meter → Grid (directional arrows/flow are clearly visible).",
+        "Three benefit callouts are visible near the diagram with icons and text matching: “60% subsidy”, “25 years power”, and “Big savings on bills”.",
+        "The diagram section is responsive (readable on mobile and desktop) and has accurate alt text."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/AboutPage.tsx",
+          "path": "frontend/public/assets/generated/grid-connected-working-diagram-hindi.dim_1400x900.png",
+          "operation": "create",
+          "description": "Add the provided generated infographic asset with Hindi labels and arrows showing Solar Panel → Inverter → Meter → Grid at this exact path so it can be referenced as a static public asset."
+        },
+        {
+          "path": "frontend/src/pages/HowItWorksPage.tsx",
           "operation": "modify",
-          "description": "Add a new \"Board of Directors\" section to the About page that renders exactly the three required director names with square (1:1) headshot images sourced from the static generated assets. Implement a responsive grid (single column on small screens; multi-column on larger screens) and ensure images use consistent sizing and non-distorting object-fit. Prefer existing shadcn-ui Card styling patterns already used on the page; verify the component's usage instructions before implementing."
+          "description": "Add a new “Working Diagram” section on /how-it-works that uses frontend/public/assets/generated/grid-connected-working-diagram-hindi.dim_1400x900.png with accurate alt text and responsive layout. Add three benefit callouts near the diagram with icons and exact texts: “60% subsidy”, “25 years power”, “Big savings on bills”. Use shadcn-ui Card for callouts to match site styling; verify the component's usage instructions before implementing."
         }
       ]
     },
     {
       "id": "REQ-3",
-      "summary": "Keep the existing logo asset path in header/footer and add a resilient fallback so branding remains meaningful if the logo fails to load.",
+      "summary": "Refactor /services into an NSPG-style 6-card grid with Learn More routes to dedicated SEO-friendly service detail pages.",
       "acceptanceCriteria": [
-        "Header continues to show the logo image and company name, using the existing logo path already referenced in the code.",
-        "Footer continues to show the logo image and company name, using the existing logo path already referenced in the code.",
-        "If the logo image cannot be loaded, the UI still shows meaningful branding via text (no broken layout)."
+        "/services renders a card grid/list containing all 6 requested service categories with the exact labels (minor punctuation/case differences acceptable; meaning must match).",
+        "Each service card includes a short description (English) and a visible “Learn More” CTA.",
+        "Each “Learn More” button navigates to a unique detail route (e.g., /services/rooftop-residential), not an anchor on the same page.",
+        "Each detail page sets SEO metadata (title + meta description) via the existing SEO utility and includes unique, non-placeholder English content relevant to the service.",
+        "Navigation to /services and each service detail page works in both desktop and mobile navigation flows."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/SiteHeader.tsx",
-          "operation": "modify",
-          "description": "Add a safe logo rendering fallback in the header while preserving the existing logo image path. If the logo image fails to load, gracefully render meaningful branding via text (and/or a non-image placeholder) without breaking layout."
+          "path": "frontend/src/data/serviceDetails.ts",
+          "operation": "create",
+          "description": "Create a frontend content map for the 6 required service categories (title label, slug, short description, SEO title/description, and structured detail-page copy) so /services and detail pages can share consistent content without placeholders."
         },
         {
-          "path": "frontend/src/components/SiteFooter.tsx",
+          "path": "frontend/src/pages/ServicesPage.tsx",
           "operation": "modify",
-          "description": "Add a safe logo rendering fallback in the footer while preserving the existing logo image path. If the logo image fails to load, gracefully render meaningful branding via text (and/or a non-image placeholder) without breaking layout."
+          "description": "Refactor /services into an NSPG-style services grid containing exactly these card labels: Rooftop Residential, Off-Grid, Hybrid, Aata Chakki, Hospital, College / Hotel / Petrol Pump. Each card must show an English short description and a “Learn More” button linking to its unique detail route. Use shadcn-ui Card and Button to build the grid; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/ServiceDetailPage.tsx",
+          "operation": "create",
+          "description": "Create a dedicated service detail page component that reads the service route param, pulls matching content from frontend/src/data/serviceDetails.ts, sets SEO via setSEO (title + meta description), and renders unique, non-placeholder English content per service. Use shadcn-ui Card for sections and consistent typography; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire a new service detail route under /services (e.g., /services/$serviceSlug) to render ServiceDetailPage and ensure navigation works across desktop/mobile flows."
         }
       ]
     },
     {
       "id": "REQ-4",
-      "summary": "Add the three director headshot images as static generated assets and reference them from the About page Board of Directors section.",
+      "summary": "Replace the screenshot-only /calculator with a functional savings calculator driven by monthly bill input and clear assumptions, computing 5 outputs client-side.",
       "acceptanceCriteria": [
-        "Three director images exist in frontend/public/assets/generated and are used by the About page Board of Directors section.",
-        "No backend endpoints are introduced for serving images; images are loaded via static paths under /assets/generated/."
+        "/calculator includes at least one input for “Monthly electricity bill” and updates results automatically when the input changes.",
+        "The calculator displays all five outputs: system size (kW), annual savings, units generated, space required, and project cost after subsidy.",
+        "Displayed results include units/labels (e.g., kW, ₹/year, units/year, sq ft or sq m) and are formatted legibly.",
+        "The calculator provides reasonable default assumptions via clearly labeled constants or helper text in the UI (e.g., tariff, generation per kW), without requiring any backend dependency.",
+        "The page remains responsive and retains SEO metadata."
       ],
       "file_operations": [
         {
-          "path": "frontend/public/assets/generated/director-vishnu.dim_500x500.png",
+          "path": "frontend/src/lib/solarCalculator.ts",
           "operation": "create",
-          "description": "Add the required static director image asset at frontend/public/assets/generated/director-vishnu.dim_500x500.png for use in the Board of Directors section."
+          "description": "Create pure helper functions/constants for the solar savings calculations (assumptions like tariff, annual generation per kW, space per kW, baseline project cost, and an example subsidy model) so the UI can recompute results on input change without backend dependencies."
         },
         {
-          "path": "frontend/public/assets/generated/director-kartik.dim_500x500.png",
-          "operation": "create",
-          "description": "Add the required static director image asset at frontend/public/assets/generated/director-kartik.dim_500x500.png for use in the Board of Directors section."
-        },
-        {
-          "path": "frontend/public/assets/generated/director-ganesh.dim_500x500.png",
-          "operation": "create",
-          "description": "Add the required static director image asset at frontend/public/assets/generated/director-ganesh.dim_500x500.png for use in the Board of Directors section."
-        },
-        {
-          "path": "frontend/src/pages/AboutPage.tsx",
+          "path": "frontend/src/pages/CalculatorPage.tsx",
           "operation": "modify",
-          "description": "Wire the three static director images into the Board of Directors section using their static paths under frontend/public/assets/generated (director-vishnu.dim_500x500.png, director-kartik.dim_500x500.png, director-ganesh.dim_500x500.png) and ensure images render as uniformly sized square headshots."
+          "description": "Replace the static screenshot with an interactive calculator UI: a Monthly electricity bill input and an auto-updating results area that displays recommended system size (kW), estimated annual savings, units generated, space required, and project cost after subtracting subsidy. Show clearly labeled assumptions in the UI. Use shadcn-ui Input, Card, and related form components for consistent styling; verify the component's usage instructions before implementing. Keep existing setSEO behavior."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Add a prominent “Book Free Consultation” CTA offering WhatsApp, Call, and Form options, linking to the owner’s phone and existing contact form.",
+      "acceptanceCriteria": [
+        "At least one highly visible “Book Free Consultation” CTA is present on key pages (Home, Services, Calculator, Subsidies) and/or in the global header/footer.",
+        "The Call option uses a tel: link targeting the existing number (+91 77180 53222).",
+        "The WhatsApp option opens WhatsApp using a wa.me or api.whatsapp.com deep-link to the same phone number (+91 77180 53222) with a prefilled message.",
+        "The Form option routes to the existing contact page/section and uses the existing contact form submission flow.",
+        "No third-party auth or external messaging APIs are introduced."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/BookFreeConsultationCTA.tsx",
+          "operation": "modify",
+          "description": "Implement the CTA UI to include three actions: WhatsApp deep-link (to +91 77180 53222) with a prefilled message, Call via tel:+917718053222, and Form routing to /contact. Use shadcn-ui Button (and optional dropdown/sheet if needed) to keep it prominent and consistent; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/SiteHeader.tsx",
+          "operation": "modify",
+          "description": "Add a highly visible “Book Free Consultation” CTA in the header (desktop and mobile) that exposes WhatsApp/Call/Form options. Use shadcn-ui Button/Sheet patterns already present in the header; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Ensure the Home page prominently includes the new “Book Free Consultation” CTA (either by embedding BookFreeConsultationCTA in the hero/CTA area or aligning existing buttons to the new multi-option CTA behavior). Use shadcn-ui components as needed; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/ServicesPage.tsx",
+          "operation": "modify",
+          "description": "Embed the BookFreeConsultationCTA on /services in a prominent spot (e.g., near the top or bottom CTA section) to ensure leads can use WhatsApp/Call/Form from Services. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/CalculatorPage.tsx",
+          "operation": "modify",
+          "description": "Embed the BookFreeConsultationCTA on /calculator in a prominent spot near results/CTA area so users can convert after seeing savings. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/SubsidiesPage.tsx",
+          "operation": "modify",
+          "description": "Embed the BookFreeConsultationCTA on /subsidies to convert subsidy-intent visitors with WhatsApp/Call/Form options. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Align header navigation labels and routes with the recommended structure while keeping existing extra pages only if they do not conflict.",
+      "acceptanceCriteria": [
+        "Header navigation labels reflect the recommended wording (e.g., “Government Subsidy”, “Solar Services”, “Solar Calculator”, “Projects / Gallery”, “About GKV Smart Energy”).",
+        "Each nav item routes to the correct existing page/route and works on both desktop and mobile menus.",
+        "No navigation regressions: existing routes still load and active-route styling continues to work."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/SiteHeader.tsx",
+          "operation": "modify",
+          "description": "Update header navigation labels to: Home, About GKV Smart Energy (route: /about), Government Subsidy (/subsidies), Solar Services (/services), Solar Calculator (/calculator), Projects / Gallery (/projects), Contact Us (/contact). Keep active-route styling intact and ensure mobile sheet menu matches. If retaining /how-it-works as an extra page, ensure it does not conflict with the recommended structure (e.g., move it out of primary nav or place it after the recommended items). Use existing shadcn-ui Sheet/Button patterns; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/SiteFooter.tsx",
+          "operation": "modify",
+          "description": "Align footer quick links (and any service list wording) with the updated information architecture labels/routes, while preserving existing contact info and ensuring no broken links. Verify any shadcn-ui component usage instructions before implementing."
         }
       ]
     }

@@ -1,13 +1,14 @@
 # Specification
 
 ## Summary
-**Goal:** Update the site’s contact details to the correct company information, add a Board of Directors section with photos on the About page, and ensure the logo renders consistently with a graceful fallback.
+**Goal:** Expand the GKV Smart Energy website with improved subsidy content, a Hindi-labeled grid-connected working diagram, NSPG-style services with SEO detail pages, a functional solar savings calculator, and a prominent Free Consultation CTA—while keeping navigation aligned to the recommended structure.
 
 **Planned changes:**
-- Replace any placeholder contact info across the site (footer and Contact page) with the provided mobile number, email, and both head/branch office addresses (English text).
-- Update Contact page “visit/map” placeholder text to reference the provided office location(s) rather than the old placeholder address.
-- Add an About page “Board of Directors” section listing Vishnu Kumar Chaudhary, Kartik Kumar Chaudhary, and Ganesh Kumar Chaudhary with square, consistently sized headshot images in a responsive layout.
-- Add three director photo image assets as static files under `frontend/public/assets/generated` and reference them from the new section.
-- Ensure header and footer use the existing logo asset path consistently, including meaningful alt text and a safe text fallback if the logo fails to load.
+- Upgrade the Government Subsidy page (/subsidies) with a Central + State comparison table for 1kW/2kW/3kW, an English explanation section for PM Surya Ghar + state policy, and example “Total Subsidy” summary cards (₹45,000 / ₹90,000 / ₹1,08,000).
+- Add a grid-connected solar “Working Diagram” section using a new infographic that shows Solar Panel → Inverter → Meter → Grid with Hindi labels inside the diagram, plus three benefit callouts with icons (“60% subsidy”, “25 years power”, “Big savings on bills”).
+- Refactor the Solar Services page (/services) into an NSPG-style card grid with exactly six service categories (Rooftop Residential, Off-Grid, Hybrid, Aata Chakki, Hospital, College / Hotel / Petrol Pump), each with a short description and “Learn More” linking to a dedicated SEO-friendly detail page.
+- Replace the current screenshot-only calculator with a functional Solar Savings Calculator on /calculator that takes monthly bill input and auto-calculates: system size (kW), estimated annual savings, units generated, space required, and project cost after subsidy.
+- Add a prominent “Book Free Consultation” CTA (WhatsApp deep-link, tel: call link, and link to the existing contact form) on key pages and/or globally.
+- Align header navigation labels to: Home, About GKV Smart Energy, Government Subsidy, Solar Services, Solar Calculator, Projects / Gallery, Contact Us (without breaking existing routes).
 
-**User-visible outcome:** Visitors see the correct addresses, phone, and email everywhere on the site, can view a Board of Directors section with photos on the About page, and the company logo displays reliably in the header/footer with fallback branding if the image can’t be loaded.
+**User-visible outcome:** Visitors can view clearer subsidy comparisons and totals, understand grid-connected solar via a Hindi-labeled diagram, browse services and open SEO detail pages, use an interactive savings calculator, and quickly book a free consultation via WhatsApp/call/form using the updated navigation.

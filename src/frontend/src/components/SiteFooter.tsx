@@ -42,17 +42,27 @@ export default function SiteFooter() {
               </li>
               <li>
                 <Link to="/about" className="text-muted-foreground hover:text-primary transition-colors">
-                  About Us
+                  About GKV Smart Energy
+                </Link>
+              </li>
+              <li>
+                <Link to="/subsidies" className="text-muted-foreground hover:text-primary transition-colors">
+                  Government Subsidy
                 </Link>
               </li>
               <li>
                 <Link to="/services" className="text-muted-foreground hover:text-primary transition-colors">
-                  Services
+                  Solar Services
+                </Link>
+              </li>
+              <li>
+                <Link to="/calculator" className="text-muted-foreground hover:text-primary transition-colors">
+                  Solar Calculator
                 </Link>
               </li>
               <li>
                 <Link to="/projects" className="text-muted-foreground hover:text-primary transition-colors">
-                  Projects
+                  Projects / Gallery
                 </Link>
               </li>
             </ul>
@@ -62,10 +72,12 @@ export default function SiteFooter() {
           <div className="space-y-4">
             <h3 className="text-sm font-semibold">Our Services</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>Residential Solar Solutions</li>
-              <li>Commercial Solar Systems</li>
-              <li>Rooftop Installation</li>
-              <li>Maintenance & Support</li>
+              <li>Rooftop Residential</li>
+              <li>Off-Grid Systems</li>
+              <li>Hybrid Solar</li>
+              <li>Aata Chakki Solar</li>
+              <li>Hospital Solar</li>
+              <li>College / Hotel / Petrol Pump</li>
             </ul>
           </div>
 

@@ -1,11 +1,11 @@
 {
-  "frontend/src/App.tsx": "Main application component with TanStack Router setup, defining all routes (Home, About, Services, Projects, Contact) and wrapping them in the SiteLayout component.",
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup, defining all routes including the new service detail route (/services/$serviceSlug) and wrapping them in the SiteLayout component.",
   "frontend/src/components/SiteLayout.tsx": "Layout wrapper component that renders the site header, main content outlet, and footer for consistent structure across all pages.",
-  "frontend/src/components/SiteHeader.tsx": "Responsive header component with logo (including error fallback), desktop navigation menu, and mobile drawer navigation using Sheet component with active route highlighting.",
-  "frontend/src/components/SiteFooter.tsx": "Footer component displaying company info, quick links, services list, and updated contact details (Head Office address in Bihar, phone +91 77180 53222, email gkvsmartenergy@gmail.com) with logo fallback handling and caffeine.ai attribution.",
-  "frontend/src/pages/HomePage.tsx": "Home page with hero section, introduction, service highlights cards, why choose us section, customer testimonials, and CTA; includes SEO metadata.",
+  "frontend/src/components/SiteHeader.tsx": "Responsive header with updated navigation labels matching recommended structure, integrated \"Book Consultation\" dropdown in desktop view, and mobile sheet menu with WhatsApp/Call CTAs.",
+  "frontend/src/components/SiteFooter.tsx": "Footer component with updated quick links and services list reflecting the new information architecture (Government Subsidy, Solar Services, Solar Calculator, etc.).",
+  "frontend/src/pages/HomePage.tsx": "Home page with hero section, service highlights, why choose us section, testimonials, and integrated BookFreeConsultationCTA component for lead generation.",
   "frontend/src/pages/AboutPage.tsx": "About page featuring company overview, vision and mission cards, Board of Directors section with three directors (Vishnu, Kartik, and Ganesh Kumar Chaudhary) displayed with square headshot images in responsive grid, experience/expertise/reliability sections, and core values.",
-  "frontend/src/pages/ServicesPage.tsx": "Services page displaying all five solar service offerings in detailed cards with features lists and CTA section; includes SEO metadata.",
+  "frontend/src/pages/ServicesPage.tsx": "Services overview page displaying all 6 service categories in a card grid with icons, short descriptions, and \"Learn More\" buttons using proper TanStack Router Link syntax with params for dynamic routes.",
   "frontend/src/pages/ProjectsPage.tsx": "Projects portfolio page with stats section and gallery grid of completed solar installations showing capacity and client benefits; includes SEO metadata.",
   "frontend/src/pages/ContactPage.tsx": "Contact page featuring both Head Office (Madhubani, Bihar) and Branch Office (Varanasi, Uttar Pradesh) addresses, updated phone (+91 77180 53222) and email (gkvsmartenergy@gmail.com) with proper tel/mailto links, contact form, and map placeholder section.",
   "frontend/src/components/ContactForm.tsx": "Reusable contact form component with validation, loading states, success/error alerts, and backend integration for form submission.",
@@ -13,5 +13,12 @@
   "frontend/src/data/projects.ts": "Static data file containing project information (title, location, capacity, images, benefits) used by the Projects page.",
   "frontend/src/lib/seo.ts": "SEO utility function to dynamically set page title, meta description, and Open Graph tags for better search engine optimization.",
   "frontend/src/index.css": "Global styles with OKLCH color system customized for solar energy theme using green and blue accents on white background for both light and dark modes.",
-  "frontend/tailwind.config.js": "Tailwind configuration extended with custom colors, shadows, Inter font family, and design tokens matching the solar energy brand theme."
+  "frontend/tailwind.config.js": "Tailwind configuration extended with custom colors, shadows, Inter font family, and design tokens matching the solar energy brand theme.",
+  "frontend/src/pages/CalculatorPage.tsx": "Interactive solar savings calculator with monthly bill input, real-time calculation of 5 key outputs (system size, annual savings, units generated, space required, project cost after subsidy), displayed assumptions, and integrated CTA.",
+  "frontend/src/pages/SubsidiesPage.tsx": "Comprehensive government subsidies page with total subsidy cards (₹45k/₹90k/₹1.08L), detailed Central vs State comparison table, PM Surya Ghar explanation, state policy benefits, and assistance information with integrated CTA.",
+  "frontend/src/pages/HowItWorksPage.tsx": "How solar works page featuring the Hindi-labeled grid-connected working diagram infographic, three benefit callouts (60% subsidy, 25 years power, big savings), process steps explanation, and benefits of grid-connected systems.",
+  "frontend/src/data/serviceDetails.ts": "Comprehensive service content data file containing detailed information for all 6 service categories (Rooftop Residential, Off-Grid, Hybrid, Aata Chakki, Hospital, College/Hotel/Petrol Pump) with SEO metadata, features, benefits, and ideal use cases.",
+  "frontend/src/lib/solarCalculator.ts": "Solar calculator utility functions with assumptions and calculations for system sizing, savings, subsidy, space requirements, and cost estimation based on monthly electricity bill input.",
+  "frontend/src/components/BookFreeConsultationCTA.tsx": "Reusable CTA component offering three contact options (WhatsApp, Call, Form) with two variants (default card and compact button layout) for lead generation across key pages.",
+  "frontend/src/pages/ServiceDetailPage.tsx": "Dynamic service detail page component that reads the service slug from route params with proper typing, displays comprehensive service information including features, benefits, and ideal use cases, with SEO metadata and CTA."
 }

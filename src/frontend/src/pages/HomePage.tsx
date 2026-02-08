@@ -2,8 +2,9 @@ import { useEffect } from 'react';
 import { Link } from '@tanstack/react-router';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, CheckCircle, Home, Building2, Wrench, HeadphonesIcon, Zap, Shield, Users, Award } from 'lucide-react';
+import { ArrowRight, Home, Building2, Wrench, HeadphonesIcon, Zap, Shield, Users, Award } from 'lucide-react';
 import { setSEO } from '@/lib/seo';
+import BookFreeConsultationCTA from '@/components/BookFreeConsultationCTA';
 
 const services = [
   {
@@ -92,13 +93,13 @@ export default function HomePage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button asChild size="lg" className="text-base">
-                  <Link to="/contact">
-                    Get Free Consultation
+                  <Link to="/calculator">
+                    Calculate Savings
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="text-base">
-                  <Link to="/contact">Contact Us</Link>
+                  <Link to="/services">Explore Services</Link>
                 </Button>
               </div>
             </div>
@@ -194,17 +195,11 @@ export default function HomePage() {
           </div>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="bg-white">
-                <CardHeader>
-                  <div className="flex items-center gap-2 mb-2">
-                    <CheckCircle className="h-5 w-5 text-green-600" />
-                    <span className="text-sm font-medium text-green-600">Verified Customer</span>
-                  </div>
-                  <CardTitle className="text-lg">{testimonial.name}</CardTitle>
-                  <CardDescription>{testimonial.location}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground italic">"{testimonial.text}"</p>
+              <Card key={index} className="border-2">
+                <CardContent className="pt-6">
+                  <p className="text-muted-foreground mb-4 italic">"{testimonial.text}"</p>
+                  <div className="font-semibold">{testimonial.name}</div>
+                  <div className="text-sm text-muted-foreground">{testimonial.location}</div>
                 </CardContent>
               </Card>
             ))}
@@ -213,20 +208,14 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-20 bg-primary text-primary-foreground">
-        <div className="container text-center space-y-6">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Ready to Go Solar?
-          </h2>
-          <p className="text-xl max-w-2xl mx-auto opacity-90">
-            Get a free consultation and discover how much you can save with solar energy
-          </p>
-          <Button asChild size="lg" variant="secondary" className="text-base">
-            <Link to="/contact">
-              Contact Us Today
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
-          </Button>
+      <section className="py-16 md:py-20 bg-white">
+        <div className="container">
+          <div className="mx-auto max-w-4xl">
+            <BookFreeConsultationCTA
+              title="Ready to Go Solar?"
+              description="Get a free consultation and discover how much you can save with solar energy"
+            />
+          </div>
         </div>
       </section>
     </div>

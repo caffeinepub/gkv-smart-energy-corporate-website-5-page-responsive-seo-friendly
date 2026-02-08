@@ -1,14 +1,22 @@
 import { Link, useRouterState } from '@tanstack/react-router';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Phone, MessageCircle } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 const navLinks = [
   { path: '/', label: 'Home' },
-  { path: '/about', label: 'About Us' },
-  { path: '/services', label: 'Services' },
-  { path: '/projects', label: 'Projects' },
+  { path: '/about', label: 'About GKV Smart Energy' },
+  { path: '/subsidies', label: 'Government Subsidy' },
+  { path: '/services', label: 'Solar Services' },
+  { path: '/calculator', label: 'Solar Calculator' },
+  { path: '/projects', label: 'Projects / Gallery' },
   { path: '/contact', label: 'Contact Us' },
 ];
 
@@ -17,6 +25,11 @@ export default function SiteHeader() {
   const [logoError, setLogoError] = useState(false);
   const router = useRouterState();
   const currentPath = router.location.pathname;
+
+  const phoneNumber = '+917718053222';
+  const whatsappMessage = encodeURIComponent(
+    'Hello! I am interested in solar energy solutions from GKV Smart Energy. Please provide more information.'
+  );
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -34,19 +47,17 @@ export default function SiteHeader() {
               <span className="text-primary font-bold text-lg">GKV</span>
             </div>
           )}
-          <span className="text-xl font-bold text-primary">GKV Smart Energy</span>
+          <span className="text-xl font-bold text-primary hidden sm:inline">GKV Smart Energy</span>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex md:items-center md:gap-1">
+        <nav className="hidden lg:flex lg:items-center lg:gap-1">
           {navLinks.map((link) => (
             <Link
               key={link.path}
               to={link.path}
-              className={`px-4 py-2 text-sm font-medium transition-colors hover:text-primary ${
-                currentPath === link.path
-                  ? 'text-primary'
-                  : 'text-muted-foreground'
+              className={`px-3 py-2 text-sm font-medium transition-colors hover:text-primary ${
+                currentPath === link.path ? 'text-primary' : 'text-muted-foreground'
               }`}
             >
               {link.label}
@@ -54,9 +65,45 @@ export default function SiteHeader() {
           ))}
         </nav>
 
+        {/* Desktop CTA */}
+        <div className="hidden lg:flex lg:items-center lg:gap-2">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button size="sm" className="gap-2">
+                <Phone className="h-4 w-4" />
+                Book Consultation
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-56">
+              <DropdownMenuItem asChild>
+                <a
+                  href={`https://wa.me/${phoneNumber}?text=${whatsappMessage}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 cursor-pointer"
+                >
+                  <MessageCircle className="h-4 w-4" />
+                  WhatsApp
+                </a>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <a href={`tel:${phoneNumber}`} className="flex items-center gap-2 cursor-pointer">
+                  <Phone className="h-4 w-4" />
+                  Call: +91 77180 53222
+                </a>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/contact" className="flex items-center gap-2 cursor-pointer">
+                  Contact Form
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+
         {/* Mobile Navigation */}
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
-          <SheetTrigger asChild className="md:hidden">
+          <SheetTrigger asChild className="lg:hidden">
             <Button variant="ghost" size="icon">
               <Menu className="h-6 w-6" />
               <span className="sr-only">Toggle menu</span>
@@ -86,6 +133,28 @@ export default function SiteHeader() {
                   </Link>
                 </SheetClose>
               ))}
+              <div className="mt-4 pt-4 border-t space-y-2">
+                <SheetClose asChild>
+                  <Button asChild className="w-full gap-2" size="lg">
+                    <a
+                      href={`https://wa.me/${phoneNumber}?text=${whatsappMessage}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <MessageCircle className="h-4 w-4" />
+                      WhatsApp
+                    </a>
+                  </Button>
+                </SheetClose>
+                <SheetClose asChild>
+                  <Button asChild variant="outline" className="w-full gap-2" size="lg">
+                    <a href={`tel:${phoneNumber}`}>
+                      <Phone className="h-4 w-4" />
+                      Call Now
+                    </a>
+                  </Button>
+                </SheetClose>
+              </div>
             </nav>
           </SheetContent>
         </Sheet>

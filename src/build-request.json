@@ -1,108 +1,140 @@
 {
   "kind": "build_request",
-  "title": "Add company addresses/contact details and Board of Directors section with photos",
+  "title": "Expand GKV Smart Energy site: subsidy table + Hindi working diagram, NSPG-style services with SEO detail pages, functional savings calculator, and Free Consultation CTA",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Update all displayed company contact information to match the provided details, replacing any placeholder address/phone/email currently shown across the site (footer and Contact page). Use English for all user-facing text.",
+      "text": "Upgrade the Government Subsidy page (/subsidies) to include (a) a clear Central + State subsidy comparison table for 1kW, 2kW, and 3kW systems, (b) an explanation section for “PM Surya Ghar” and state policy (English page copy; table values may include ₹ amounts), and (c) prominent “Total Subsidy” summary cards showing example totals ₹45,000, ₹90,000, and ₹1,08,000.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-user"
         ],
         "quotes": [
-          "COMPANY DETAILS:\n\nHead Office Address:\nVillage + Post – Saurath,\nRahika,\nMadhubani – 847213,\nBihar, India\n\nBranch Office Address:\nMaruti Nagar Colony,\nKashi Vishwanath Area,\nVaranasi – 221005,\nUttar Pradesh, India\n\nContact Details:\nMobile: +91 77180 53222\nEmail: gkvsmartenergy@gmail.com"
+          "1️⃣ Government Subsidy Section\n\nCentral + State subsidy table (1kW / 2kW / 3kW)\n\nPM Surya Ghar + State policy explanation\n\nTotal subsidy cards (jaise ₹45,000 / ₹90,000 / ₹1,08,000)"
         ]
       },
       "acceptanceCriteria": [
-        "Site footer contact section no longer shows placeholder details (e.g., \"123 Solar Street...\", \"+91 98765 43210\", \"info@gkvsmartenergy.com\") and instead displays the provided Mobile (+91 77180 53222) and Email (gkvsmartenergy@gmail.com).",
-        "Contact page displays both the Head Office address (Village + Post – Saurath, Rahika, Madhubani – 847213, Bihar, India) and the Branch Office address (Maruti Nagar Colony, Kashi Vishwanath Area, Varanasi – 221005, Uttar Pradesh, India).",
-        "Phone link uses tel:+917718053222 and email link uses mailto:gkvsmartenergy@gmail.com.",
-        "Any map/visit placeholder text on the Contact page references the provided office location(s) rather than the existing placeholder address."
+        "Visiting /subsidies shows a table with rows/columns that clearly compare Central vs State subsidy for 1kW, 2kW, 3kW (and includes a combined/total column or equivalent clarity).",
+        "/subsidies includes an English section that explains PM Surya Ghar and state policy at a high level (no placeholders like “lorem ipsum”).",
+        "/subsidies includes three visually distinct summary cards displaying ₹45,000, ₹90,000, and ₹1,08,000 as example total subsidies.",
+        "The existing page layout, header/footer, and SEO metadata remain intact and consistent with the site style."
       ]
     },
     {
       "id": "REQ-2",
-      "text": "Add a \"Board of Directors\" section to the About page listing the directors: Vishnu Kumar Chaudhary, Kartik Kumar Chaudhary, and Ganesh Kumar Chaudhary, each with a photo displayed at consistent sizing (square headshot style).",
+      "text": "Add a Grid-Connected Solar System “Working Diagram” section using a custom infographic that visually shows the flow “Solar Panel → Inverter → Meter → Grid” with Hindi labels inside the diagram, and display three benefit callouts with icons: “60% subsidy”, “25 years power”, and “Big savings on bills” (page copy in English is allowed; Hindi is required inside the diagram labels).",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-user"
         ],
         "quotes": [
-          "LOGO,Directors:\n- Vishnu Kumar Chaudhary  \n- Kartik Kumar Chaudhary  \n- Ganesh Kumar Chaudhary"
+          "2️⃣ Grid Connected Solar System – Working Diagram\n\nVisual infographic (Solar Panel → Inverter → Meter → Grid)\nHindi labels (jaise aapne image me dikhaya)\n\nBenefits icons:\n\n60% subsidy\n\n25 saal tak bijli\n\nBill me badi bachat"
         ]
       },
       "acceptanceCriteria": [
-        "About page includes a clearly labeled \"Board of Directors\" section.",
-        "The section lists exactly these names: Vishnu Kumar Chaudhary, Kartik Kumar Chaudhary, Ganesh Kumar Chaudhary.",
-        "Each director is shown with an image and the images are rendered consistently in a square aspect ratio (1:1) with uniform on-page dimensions.",
-        "Layout is responsive: directors display as a single column on small screens and a multi-column grid on larger screens without overflow or distortion."
+        "A new infographic image asset with Hindi labels is added under frontend/public/assets/generated and is used on an appropriate page/section (either /how-it-works or a dedicated section as part of the site).",
+        "The infographic visually communicates the sequence Solar Panel → Inverter → Meter → Grid (directional arrows/flow are clearly visible).",
+        "Three benefit callouts are visible near the diagram with icons and text matching: “60% subsidy”, “25 years power”, and “Big savings on bills”.",
+        "The diagram section is responsive (readable on mobile and desktop) and has accurate alt text."
       ]
     },
     {
       "id": "REQ-3",
-      "text": "Ensure the company logo is displayed consistently in the header and footer using the existing logo asset path, and add a safe fallback (alt text / graceful rendering) if the logo image fails to load.",
+      "text": "Refactor the Solar Services page (/services) into an “NSPG-style” services grid for GKV Smart Energy with exactly these service categories as cards: Rooftop Residential, Off-Grid, Hybrid, Aata Chakki, Hospital, and College / Hotel / Petrol Pump. Each card must include a short description and a “Learn More” button that routes to a dedicated SEO-friendly detail page for that service.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-user"
         ],
         "quotes": [
-          "LOGO,Directors:"
+          "3️⃣ Services Page – NSPG style\n\nGKV Smart Energy ke naam se:\n\nRooftop Residential\n\nOff-Grid\n\nHybrid\n\nAata Chakki\n\nHospital\n\nCollege / Hotel / Petrol Pump\n\nHar card me:\n\nShort description\n\n“Learn More” button\n\nSeparate detail page (SEO friendly)"
         ]
       },
       "acceptanceCriteria": [
-        "Header continues to show the logo image and company name, using the existing logo path already referenced in the code.",
-        "Footer continues to show the logo image and company name, using the existing logo path already referenced in the code.",
-        "If the logo image cannot be loaded, the UI still shows meaningful branding via text (no broken layout)."
+        "/services renders a card grid/list containing all 6 requested service categories with the exact labels (minor punctuation/case differences acceptable; meaning must match).",
+        "Each service card includes a short description (English) and a visible “Learn More” CTA.",
+        "Each “Learn More” button navigates to a unique detail route (e.g., /services/rooftop-residential), not an anchor on the same page.",
+        "Each detail page sets SEO metadata (title + meta description) via the existing SEO utility and includes unique, non-placeholder English content relevant to the service.",
+        "Navigation to /services and each service detail page works in both desktop and mobile navigation flows."
       ]
     },
     {
       "id": "REQ-4",
-      "text": "Add the required director photo image assets as static files under frontend/public/assets/generated and reference them from the new Board of Directors section (do not serve images from the backend).",
+      "text": "Implement a functional Solar Savings Calculator on /calculator (replacing the current screenshot-only experience) where the user enters their monthly electricity bill and the UI automatically calculates and displays: recommended system size (kW), estimated annual savings, units generated, space required, and project cost after subtracting subsidy.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-user"
         ],
         "quotes": [
-          "Photo Ka bhi size rakhe Directors: me"
+          "4️⃣ Solar Savings Calculator (Hero Feature 🔥)\n\nMonthly electricity bill input\n\nAuto calculate:\n\nSystem size (kW)\n\nAnnual savings\n\nUnits generated\n\nSpace required\n\nProject cost – subsidy minus"
         ]
       },
       "acceptanceCriteria": [
-        "Three director images exist in frontend/public/assets/generated and are used by the About page Board of Directors section.",
-        "No backend endpoints are introduced for serving images; images are loaded via static paths under /assets/generated/."
+        "/calculator includes at least one input for “Monthly electricity bill” and updates results automatically when the input changes.",
+        "The calculator displays all five outputs: system size (kW), annual savings, units generated, space required, and project cost after subsidy.",
+        "Displayed results include units/labels (e.g., kW, ₹/year, units/year, sq ft or sq m) and are formatted legibly.",
+        "The calculator provides reasonable default assumptions via clearly labeled constants or helper text in the UI (e.g., tariff, generation per kW), without requiring any backend dependency.",
+        "The page remains responsive and retains SEO metadata."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Add a prominent “Book Free Consultation” CTA that offers WhatsApp, Call, and Form options, ensuring leads can be initiated directly to the owner’s mobile via WhatsApp deep-link and tel link, and via the existing contact form for form submissions.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user"
+        ],
+        "quotes": [
+          "5️⃣ Book Free Consultation Button\n\nWhatsApp / Call / Form integration\n\nDirect lead aapke mobile par"
+        ]
+      },
+      "acceptanceCriteria": [
+        "At least one highly visible “Book Free Consultation” CTA is present on key pages (Home, Services, Calculator, Subsidies) and/or in the global header/footer.",
+        "The Call option uses a tel: link targeting the existing number (+91 77180 53222).",
+        "The WhatsApp option opens WhatsApp using a wa.me or api.whatsapp.com deep-link to the same phone number (+91 77180 53222) with a prefilled message.",
+        "The Form option routes to the existing contact page/section and uses the existing contact form submission flow.",
+        "No third-party auth or external messaging APIs are introduced."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Align site navigation labels and information architecture with the recommended structure: Home, About GKV Smart Energy, Government Subsidy, Solar Services, Solar Calculator, Projects / Gallery, Contact Us (while keeping any existing extra pages only if they do not conflict).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user"
+        ],
+        "quotes": [
+          "🧱 Website Structure (Recommended)\n\nHome\n\nAbout GKV Smart Energy\n\nGovernment Subsidy\n\nSolar Services\n\nSolar Calculator\n\nProjects / Gallery\n\nContact Us"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Header navigation labels reflect the recommended wording (e.g., “Government Subsidy”, “Solar Services”, “Solar Calculator”, “Projects / Gallery”, “About GKV Smart Energy”).",
+        "Each nav item routes to the correct existing page/route and works on both desktop and mobile menus.",
+        "No navigation regressions: existing routes still load and active-route styling continues to work."
       ]
     }
   ],
   "constraints": [
-    "Backend must remain single-actor Motoko (all logic in backend/main.mo).",
-    "Do not edit any files under frontend/src/components/ui or any paths listed as immutable in SYSTEM_CONTEXT.",
-    "Use English for all user-facing text."
+    "Backend must remain a single Motoko actor in backend/main.mo; only add backend changes if strictly necessary for the requested features.",
+    "Do not edit files under frontend/src/components/ui (compose them instead).",
+    "Do not edit frontend immutable paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx.",
+    "All user-facing copy included in this build request must be written/implemented in English (except Hindi labels required inside the working-diagram infographic)."
   ],
   "nonGoals": [
-    "Implementing Google Maps API integration (the Contact page may keep a placeholder).",
-    "Adding third-party authentication providers (only Internet Identity is supported, and no auth changes are required here).",
-    "Creating or changing backend data models for directors or contact info (static site content updates only)."
+    "Implementing third-party authentication providers (only Internet Identity is supported).",
+    "Adding external databases or third-party APIs for subsidy data; values/content should be maintained within the app code/content.",
+    "Real-time chat, WebSockets, push notifications, or SMS integrations."
   ],
   "imageRequirements": {
     "required": [
-      "Neutral corporate director headshot placeholder portrait, square crop, soft background (director-vishnu.dim_500x500.png)",
-      "Neutral corporate director headshot placeholder portrait, square crop, soft background (director-kartik.dim_500x500.png)",
-      "Neutral corporate director headshot placeholder portrait, square crop, soft background (director-ganesh.dim_500x500.png)"
+      "Grid-connected solar working diagram infographic with Hindi labels and arrows showing Solar Panel → Inverter → Meter → Grid (grid-connected-working-diagram-hindi.dim_1400x900.png)"
     ],
     "edits": []
-  },
-  "userProfileUpdate": {
-    "goalsToAdd": [],
-    "goalsToRemove": [],
-    "preferencesToAdd": [],
-    "preferencesToRemove": [],
-    "miscToAdd": [],
-    "miscToRemove": [],
-    "fieldsToSet": {},
-    "fieldsToDelete": []
   }
 }
