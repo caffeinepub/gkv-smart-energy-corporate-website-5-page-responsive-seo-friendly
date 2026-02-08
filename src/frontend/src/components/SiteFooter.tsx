@@ -1,6 +1,7 @@
 import { Mail, MapPin, Phone } from 'lucide-react';
 import { Link } from '@tanstack/react-router';
 import { useState } from 'react';
+import { BRAND } from '@/lib/brand';
 
 export default function SiteFooter() {
   const [logoError, setLogoError] = useState(false);
@@ -14,8 +15,8 @@ export default function SiteFooter() {
             <div className="flex items-center gap-2">
               {!logoError ? (
                 <img
-                  src="/assets/generated/gkv-logo.dim_512x512.png"
-                  alt="GKV Smart Energy"
+                  src={BRAND.logoPath}
+                  alt={BRAND.name}
                   className="h-8 w-8 object-contain"
                   onError={() => setLogoError(true)}
                 />
@@ -24,11 +25,9 @@ export default function SiteFooter() {
                   <span className="text-primary font-bold text-sm">GKV</span>
                 </div>
               )}
-              <span className="text-lg font-bold text-primary">GKV Smart Energy</span>
+              <span className="text-lg font-bold text-primary">{BRAND.name}</span>
             </div>
-            <p className="text-sm text-muted-foreground">
-              Powering a sustainable future with smart, reliable, and affordable solar energy solutions.
-            </p>
+            <p className="text-sm text-muted-foreground">{BRAND.tagline}</p>
           </div>
 
           {/* Quick Links */}

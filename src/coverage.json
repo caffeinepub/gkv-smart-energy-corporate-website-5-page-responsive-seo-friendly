@@ -1,103 +1,64 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-08T06:07:08.195Z",
+  "generatedAt": "2026-02-08T06:17:18.019Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 6,
-    "implemented": 6,
+    "total": 3,
+    "implemented": 3,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Upgrade the Government Subsidy page (/subsidies) to include (a) a clear Central + State subsidy comparison table for 1kW, 2kW, and 3kW systems, (b) an explanation section for “PM Surya Ghar” and state policy (English page copy; table values may include ₹ amounts), and (c) prominent “Total Subsidy” summary cards showing example totals ₹45,000, ₹90,000, and ₹1,08,000.",
+        "summary": "Replace the website logo with the user-uploaded logo so that the header and footer display the new logo consistently (including mobile header), without showing the fallback 'GKV' text logo unless the image fails to load.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/pages/SubsidiesPage.tsx",
-          "frontend/src/components/BookFreeConsultationCTA.tsx"
+          "frontend/public/assets/generated/gkv-logo.dim_512x512.png",
+          "frontend/src/lib/brand.ts",
+          "frontend/src/components/SiteHeader.tsx",
+          "frontend/src/components/SiteFooter.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/pages/SubsidiesPage.tsx",
-          "frontend/src/components/BookFreeConsultationCTA.tsx"
+          "frontend/public/assets/generated/gkv-logo.dim_512x512.png",
+          "frontend/src/lib/brand.ts",
+          "frontend/src/components/SiteHeader.tsx",
+          "frontend/src/components/SiteFooter.tsx"
         ]
       },
       {
         "id": "REQ-2",
-        "summary": "Add a Grid-Connected Solar System “Working Diagram” section using a custom infographic that visually shows the flow “Solar Panel → Inverter → Meter → Grid” with Hindi labels inside the diagram, and display three benefit callouts with icons: “60% subsidy”, “25 years power”, and “Big savings on bills” (page copy in English is allowed; Hindi is required inside the diagram labels).",
+        "summary": "On the Solar Calculator page, display a representative solar installation image that automatically matches the calculated system size (kW) so that the user sees 'the photo for that many kW'.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/public/assets/generated/grid-connected-working-diagram-hindi.dim_1400x900.png",
-          "frontend/src/pages/HowItWorksPage.tsx"
+          "frontend/src/lib/solarKwImages.ts",
+          "frontend/src/pages/CalculatorPage.tsx"
         ],
         "matchedFiles": [
-          "frontend/public/assets/generated/grid-connected-working-diagram-hindi.dim_1400x900.png",
-          "frontend/src/pages/HowItWorksPage.tsx"
+          "frontend/src/lib/solarKwImages.ts",
+          "frontend/src/pages/CalculatorPage.tsx"
         ]
       },
       {
         "id": "REQ-3",
-        "summary": "Refactor the Solar Services page (/services) into an “NSPG-style” services grid for GKV Smart Energy with exactly these service categories as cards: Rooftop Residential, Off-Grid, Hybrid, Aata Chakki, Hospital, and College / Hotel / Petrol Pump. Each card must include a short description and a “Learn More” button that routes to a dedicated SEO-friendly detail page for that service.",
+        "summary": "Add the required static image assets under `frontend/public/assets/generated` and wire them into the UI (do not serve generated images via the backend).",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/data/serviceDetails.ts",
-          "frontend/src/pages/ServicesPage.tsx",
-          "frontend/src/pages/ServiceDetailPage.tsx",
-          "frontend/src/App.tsx"
+          "frontend/public/assets/generated/solar-kw-02.dim_1200x600.png",
+          "frontend/public/assets/generated/solar-kw-05.dim_1200x600.png",
+          "frontend/public/assets/generated/solar-kw-10.dim_1200x600.png",
+          "frontend/public/assets/generated/solar-kw-20.dim_1200x600.png",
+          "frontend/public/assets/generated/solar-kw-50.dim_1200x600.png",
+          "frontend/src/lib/solarKwImages.ts"
         ],
         "matchedFiles": [
-          "frontend/src/data/serviceDetails.ts",
-          "frontend/src/pages/ServicesPage.tsx",
-          "frontend/src/pages/ServiceDetailPage.tsx",
-          "frontend/src/App.tsx"
-        ]
-      },
-      {
-        "id": "REQ-4",
-        "summary": "Implement a functional Solar Savings Calculator on /calculator (replacing the current screenshot-only experience) where the user enters their monthly electricity bill and the UI automatically calculates and displays: recommended system size (kW), estimated annual savings, units generated, space required, and project cost after subtracting subsidy.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/lib/solarCalculator.ts",
-          "frontend/src/pages/CalculatorPage.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/lib/solarCalculator.ts",
-          "frontend/src/pages/CalculatorPage.tsx"
-        ]
-      },
-      {
-        "id": "REQ-5",
-        "summary": "Add a prominent “Book Free Consultation” CTA that offers WhatsApp, Call, and Form options, ensuring leads can be initiated directly to the owner’s mobile via WhatsApp deep-link and tel link, and via the existing contact form for form submissions.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/BookFreeConsultationCTA.tsx",
-          "frontend/src/components/SiteHeader.tsx",
-          "frontend/src/pages/HomePage.tsx",
-          "frontend/src/pages/ServicesPage.tsx",
-          "frontend/src/pages/CalculatorPage.tsx",
-          "frontend/src/pages/SubsidiesPage.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/BookFreeConsultationCTA.tsx",
-          "frontend/src/components/SiteHeader.tsx",
-          "frontend/src/pages/HomePage.tsx",
-          "frontend/src/pages/ServicesPage.tsx",
-          "frontend/src/pages/CalculatorPage.tsx",
-          "frontend/src/pages/SubsidiesPage.tsx"
-        ]
-      },
-      {
-        "id": "REQ-6",
-        "summary": "Align site navigation labels and information architecture with the recommended structure: Home, About GKV Smart Energy, Government Subsidy, Solar Services, Solar Calculator, Projects / Gallery, Contact Us (while keeping any existing extra pages only if they do not conflict).",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/SiteHeader.tsx",
-          "frontend/src/components/SiteFooter.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/SiteHeader.tsx",
-          "frontend/src/components/SiteFooter.tsx"
+          "frontend/public/assets/generated/solar-kw-02.dim_1200x600.png",
+          "frontend/public/assets/generated/solar-kw-05.dim_1200x600.png",
+          "frontend/public/assets/generated/solar-kw-10.dim_1200x600.png",
+          "frontend/public/assets/generated/solar-kw-20.dim_1200x600.png",
+          "frontend/public/assets/generated/solar-kw-50.dim_1200x600.png",
+          "frontend/src/lib/solarKwImages.ts"
         ]
       }
     ]
@@ -107,19 +68,17 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/public/assets/generated/grid-connected-working-diagram-hindi.dim_1400x900.png",
-    "frontend/src/App.tsx",
-    "frontend/src/components/BookFreeConsultationCTA.tsx",
+    "frontend/public/assets/generated/gkv-logo.dim_512x512.png",
+    "frontend/public/assets/generated/solar-kw-02.dim_1200x600.png",
+    "frontend/public/assets/generated/solar-kw-05.dim_1200x600.png",
+    "frontend/public/assets/generated/solar-kw-10.dim_1200x600.png",
+    "frontend/public/assets/generated/solar-kw-20.dim_1200x600.png",
+    "frontend/public/assets/generated/solar-kw-50.dim_1200x600.png",
     "frontend/src/components/SiteFooter.tsx",
     "frontend/src/components/SiteHeader.tsx",
-    "frontend/src/data/serviceDetails.ts",
-    "frontend/src/lib/solarCalculator.ts",
+    "frontend/src/lib/brand.ts",
+    "frontend/src/lib/solarKwImages.ts",
     "frontend/src/pages/CalculatorPage.tsx",
-    "frontend/src/pages/HomePage.tsx",
-    "frontend/src/pages/HowItWorksPage.tsx",
-    "frontend/src/pages/ServiceDetailPage.tsx",
-    "frontend/src/pages/ServicesPage.tsx",
-    "frontend/src/pages/SubsidiesPage.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

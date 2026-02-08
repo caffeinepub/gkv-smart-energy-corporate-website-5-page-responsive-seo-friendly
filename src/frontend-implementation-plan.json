@@ -1,169 +1,97 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "GKV Smart Energy frontend expansion: subsidies table, Hindi working diagram, services SEO pages, calculator, and consultation CTA",
+  "title": "kW-matched calculator image and updated static logo asset",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Upgrade /subsidies with a Central vs State comparison table, PM Surya Ghar + state policy explanation, and example total-subsidy summary cards while preserving existing SEO/layout.",
+      "summary": "Ensure header and footer consistently render the updated static logo image, keeping the existing fallback only for image-load failure.",
       "acceptanceCriteria": [
-        "Visiting /subsidies shows a table with rows/columns that clearly compare Central vs State subsidy for 1kW, 2kW, 3kW (and includes a combined/total column or equivalent clarity).",
-        "/subsidies includes an English section that explains PM Surya Ghar and state policy at a high level (no placeholders like “lorem ipsum”).",
-        "/subsidies includes three visually distinct summary cards displaying ₹45,000, ₹90,000, and ₹1,08,000 as example total subsidies.",
-        "The existing page layout, header/footer, and SEO metadata remain intact and consistent with the site style."
+        "The logo rendered in SiteHeader uses the same path as before (currently `/assets/generated/gkv-logo.dim_512x512.png`) but displays the new uploaded logo artwork.",
+        "The logo rendered in SiteFooter matches the header logo and is visually consistent.",
+        "If the logo image fails to load, the existing fallback UI still appears (no regression)."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/SubsidiesPage.tsx",
+          "path": "frontend/public/assets/generated/gkv-logo.dim_512x512.png",
           "operation": "modify",
-          "description": "Replace the screenshot-only content with a clear Central + State subsidy comparison table for 1kW/2kW/3kW, add an English explanation section for PM Surya Ghar + state policy, and add three prominent “Total Subsidy” summary cards (₹45,000 / ₹90,000 / ₹1,08,000). Use shadcn-ui Card (and Table if present) for consistent styling; verify the component's usage instructions before implementing. Keep the existing setSEO call and overall page layout structure consistent."
+          "description": "Replace the existing logo artwork file with the user-uploaded logo while keeping the same filename/path so all existing references continue to work."
         },
         {
-          "path": "frontend/src/components/BookFreeConsultationCTA.tsx",
+          "path": "frontend/src/lib/brand.ts",
           "operation": "create",
-          "description": "Create a reusable “Book Free Consultation” CTA block that can be embedded on /subsidies (and other key pages) without changing global layout. Use shadcn-ui Button (and optional Card) to present WhatsApp/Call/Form actions consistently; verify the component's usage instructions before implementing."
+          "description": "Add a small shared constant (e.g., exported logo image path) so SiteHeader and SiteFooter reference the exact same logo path and stay consistent."
+        },
+        {
+          "path": "frontend/src/components/SiteHeader.tsx",
+          "operation": "modify",
+          "description": "Use the shared logo path constant for the header logo image while preserving the current onError fallback behavior (shows 'GKV' only if the image fails to load)."
+        },
+        {
+          "path": "frontend/src/components/SiteFooter.tsx",
+          "operation": "modify",
+          "description": "Use the shared logo path constant for the footer logo image while preserving the current onError fallback behavior (shows 'GKV' only if the image fails to load)."
         }
       ]
     },
     {
       "id": "REQ-2",
-      "summary": "Add a responsive grid-connected working diagram section using a new Hindi-labeled infographic plus three nearby benefit callouts with icons.",
+      "summary": "Show a deterministic kW-range-matched solar installation image on the Solar Calculator results based on results.systemSizeKW, with a safe fallback.",
       "acceptanceCriteria": [
-        "A new infographic image asset with Hindi labels is added under frontend/public/assets/generated and is used on an appropriate page/section (either /how-it-works or a dedicated section as part of the site).",
-        "The infographic visually communicates the sequence Solar Panel → Inverter → Meter → Grid (directional arrows/flow are clearly visible).",
-        "Three benefit callouts are visible near the diagram with icons and text matching: “60% subsidy”, “25 years power”, and “Big savings on bills”.",
-        "The diagram section is responsive (readable on mobile and desktop) and has accurate alt text."
+        "Calculator page shows a kW-matched image near the results (based on `results.systemSizeKW`).",
+        "The image selection is deterministic via defined kW ranges (e.g., <=2 kW, 3–5 kW, 6–10 kW, 11–20 kW, >20 kW).",
+        "If an image is missing for a range, a safe fallback image is shown and the page layout does not break."
       ],
       "file_operations": [
         {
-          "path": "frontend/public/assets/generated/grid-connected-working-diagram-hindi.dim_1400x900.png",
+          "path": "frontend/src/lib/solarKwImages.ts",
           "operation": "create",
-          "description": "Add the provided generated infographic asset with Hindi labels and arrows showing Solar Panel → Inverter → Meter → Grid at this exact path so it can be referenced as a static public asset."
+          "description": "Add a helper that maps system size (kW) to a deterministic image path using defined kW ranges and provides a fallback image path if a range image is unavailable."
         },
         {
-          "path": "frontend/src/pages/HowItWorksPage.tsx",
+          "path": "frontend/src/pages/CalculatorPage.tsx",
           "operation": "modify",
-          "description": "Add a new “Working Diagram” section on /how-it-works that uses frontend/public/assets/generated/grid-connected-working-diagram-hindi.dim_1400x900.png with accurate alt text and responsive layout. Add three benefit callouts near the diagram with icons and exact texts: “60% subsidy”, “25 years power”, “Big savings on bills”. Use shadcn-ui Card for callouts to match site styling; verify the component's usage instructions before implementing."
+          "description": "Render a representative solar installation image near the results section using the kW-to-image helper based on results.systemSizeKW, and add an image-load fallback so layout remains stable if an image cannot be loaded."
         }
       ]
     },
     {
       "id": "REQ-3",
-      "summary": "Refactor /services into an NSPG-style 6-card grid with Learn More routes to dedicated SEO-friendly service detail pages.",
+      "summary": "Add the required static generated images under frontend/public/assets/generated and wire them into the UI via /assets/generated paths only.",
       "acceptanceCriteria": [
-        "/services renders a card grid/list containing all 6 requested service categories with the exact labels (minor punctuation/case differences acceptable; meaning must match).",
-        "Each service card includes a short description (English) and a visible “Learn More” CTA.",
-        "Each “Learn More” button navigates to a unique detail route (e.g., /services/rooftop-residential), not an anchor on the same page.",
-        "Each detail page sets SEO metadata (title + meta description) via the existing SEO utility and includes unique, non-placeholder English content relevant to the service.",
-        "Navigation to /services and each service detail page works in both desktop and mobile navigation flows."
+        "All newly generated images are placed under `frontend/public/assets/generated` and can be loaded by the browser via `/assets/generated/...` paths.",
+        "No backend endpoints or storage are introduced for these images."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/data/serviceDetails.ts",
+          "path": "frontend/public/assets/generated/solar-kw-02.dim_1200x600.png",
           "operation": "create",
-          "description": "Create a frontend content map for the 6 required service categories (title label, slug, short description, SEO title/description, and structured detail-page copy) so /services and detail pages can share consistent content without placeholders."
+          "description": "Add static generated image asset for small system size (<=2 kW) to be used by the calculator UI via /assets/generated paths."
         },
         {
-          "path": "frontend/src/pages/ServicesPage.tsx",
-          "operation": "modify",
-          "description": "Refactor /services into an NSPG-style services grid containing exactly these card labels: Rooftop Residential, Off-Grid, Hybrid, Aata Chakki, Hospital, College / Hotel / Petrol Pump. Each card must show an English short description and a “Learn More” button linking to its unique detail route. Use shadcn-ui Card and Button to build the grid; verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/pages/ServiceDetailPage.tsx",
+          "path": "frontend/public/assets/generated/solar-kw-05.dim_1200x600.png",
           "operation": "create",
-          "description": "Create a dedicated service detail page component that reads the service route param, pulls matching content from frontend/src/data/serviceDetails.ts, sets SEO via setSEO (title + meta description), and renders unique, non-placeholder English content per service. Use shadcn-ui Card for sections and consistent typography; verify the component's usage instructions before implementing."
+          "description": "Add static generated image asset for medium-small system size (3–5 kW) to be used by the calculator UI via /assets/generated paths."
         },
         {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Wire a new service detail route under /services (e.g., /services/$serviceSlug) to render ServiceDetailPage and ensure navigation works across desktop/mobile flows."
-        }
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "summary": "Replace the screenshot-only /calculator with a functional savings calculator driven by monthly bill input and clear assumptions, computing 5 outputs client-side.",
-      "acceptanceCriteria": [
-        "/calculator includes at least one input for “Monthly electricity bill” and updates results automatically when the input changes.",
-        "The calculator displays all five outputs: system size (kW), annual savings, units generated, space required, and project cost after subsidy.",
-        "Displayed results include units/labels (e.g., kW, ₹/year, units/year, sq ft or sq m) and are formatted legibly.",
-        "The calculator provides reasonable default assumptions via clearly labeled constants or helper text in the UI (e.g., tariff, generation per kW), without requiring any backend dependency.",
-        "The page remains responsive and retains SEO metadata."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/lib/solarCalculator.ts",
+          "path": "frontend/public/assets/generated/solar-kw-10.dim_1200x600.png",
           "operation": "create",
-          "description": "Create pure helper functions/constants for the solar savings calculations (assumptions like tariff, annual generation per kW, space per kW, baseline project cost, and an example subsidy model) so the UI can recompute results on input change without backend dependencies."
+          "description": "Add static generated image asset for medium system size (6–10 kW) to be used by the calculator UI via /assets/generated paths."
         },
         {
-          "path": "frontend/src/pages/CalculatorPage.tsx",
-          "operation": "modify",
-          "description": "Replace the static screenshot with an interactive calculator UI: a Monthly electricity bill input and an auto-updating results area that displays recommended system size (kW), estimated annual savings, units generated, space required, and project cost after subtracting subsidy. Show clearly labeled assumptions in the UI. Use shadcn-ui Input, Card, and related form components for consistent styling; verify the component's usage instructions before implementing. Keep existing setSEO behavior."
-        }
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "summary": "Add a prominent “Book Free Consultation” CTA offering WhatsApp, Call, and Form options, linking to the owner’s phone and existing contact form.",
-      "acceptanceCriteria": [
-        "At least one highly visible “Book Free Consultation” CTA is present on key pages (Home, Services, Calculator, Subsidies) and/or in the global header/footer.",
-        "The Call option uses a tel: link targeting the existing number (+91 77180 53222).",
-        "The WhatsApp option opens WhatsApp using a wa.me or api.whatsapp.com deep-link to the same phone number (+91 77180 53222) with a prefilled message.",
-        "The Form option routes to the existing contact page/section and uses the existing contact form submission flow.",
-        "No third-party auth or external messaging APIs are introduced."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/BookFreeConsultationCTA.tsx",
-          "operation": "modify",
-          "description": "Implement the CTA UI to include three actions: WhatsApp deep-link (to +91 77180 53222) with a prefilled message, Call via tel:+917718053222, and Form routing to /contact. Use shadcn-ui Button (and optional dropdown/sheet if needed) to keep it prominent and consistent; verify the component's usage instructions before implementing."
+          "path": "frontend/public/assets/generated/solar-kw-20.dim_1200x600.png",
+          "operation": "create",
+          "description": "Add static generated image asset for large system size (11–20 kW) to be used by the calculator UI via /assets/generated paths."
         },
         {
-          "path": "frontend/src/components/SiteHeader.tsx",
-          "operation": "modify",
-          "description": "Add a highly visible “Book Free Consultation” CTA in the header (desktop and mobile) that exposes WhatsApp/Call/Form options. Use shadcn-ui Button/Sheet patterns already present in the header; verify the component's usage instructions before implementing."
+          "path": "frontend/public/assets/generated/solar-kw-50.dim_1200x600.png",
+          "operation": "create",
+          "description": "Add static generated image asset for very large system size (>20 kW) to be used by the calculator UI via /assets/generated paths."
         },
         {
-          "path": "frontend/src/pages/HomePage.tsx",
+          "path": "frontend/src/lib/solarKwImages.ts",
           "operation": "modify",
-          "description": "Ensure the Home page prominently includes the new “Book Free Consultation” CTA (either by embedding BookFreeConsultationCTA in the hero/CTA area or aligning existing buttons to the new multi-option CTA behavior). Use shadcn-ui components as needed; verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/pages/ServicesPage.tsx",
-          "operation": "modify",
-          "description": "Embed the BookFreeConsultationCTA on /services in a prominent spot (e.g., near the top or bottom CTA section) to ensure leads can use WhatsApp/Call/Form from Services. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/pages/CalculatorPage.tsx",
-          "operation": "modify",
-          "description": "Embed the BookFreeConsultationCTA on /calculator in a prominent spot near results/CTA area so users can convert after seeing savings. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/pages/SubsidiesPage.tsx",
-          "operation": "modify",
-          "description": "Embed the BookFreeConsultationCTA on /subsidies to convert subsidy-intent visitors with WhatsApp/Call/Form options. Verify the component's usage instructions before implementing."
-        }
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "summary": "Align header navigation labels and routes with the recommended structure while keeping existing extra pages only if they do not conflict.",
-      "acceptanceCriteria": [
-        "Header navigation labels reflect the recommended wording (e.g., “Government Subsidy”, “Solar Services”, “Solar Calculator”, “Projects / Gallery”, “About GKV Smart Energy”).",
-        "Each nav item routes to the correct existing page/route and works on both desktop and mobile menus.",
-        "No navigation regressions: existing routes still load and active-route styling continues to work."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/SiteHeader.tsx",
-          "operation": "modify",
-          "description": "Update header navigation labels to: Home, About GKV Smart Energy (route: /about), Government Subsidy (/subsidies), Solar Services (/services), Solar Calculator (/calculator), Projects / Gallery (/projects), Contact Us (/contact). Keep active-route styling intact and ensure mobile sheet menu matches. If retaining /how-it-works as an extra page, ensure it does not conflict with the recommended structure (e.g., move it out of primary nav or place it after the recommended items). Use existing shadcn-ui Sheet/Button patterns; verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/components/SiteFooter.tsx",
-          "operation": "modify",
-          "description": "Align footer quick links (and any service list wording) with the updated information architecture labels/routes, while preserving existing contact info and ensuring no broken links. Verify any shadcn-ui component usage instructions before implementing."
+          "description": "Wire the exact generated filenames into the kW-range mapping and ensure the fallback uses a safe existing generated image path if any range image is unavailable at runtime."
         }
       ]
     }

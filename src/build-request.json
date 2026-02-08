@@ -1,140 +1,93 @@
 {
   "kind": "build_request",
-  "title": "Expand GKV Smart Energy site: subsidy table + Hindi working diagram, NSPG-style services with SEO detail pages, functional savings calculator, and Free Consultation CTA",
+  "title": "Show a kW-specific solar photo and replace site logo with uploaded logo",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Upgrade the Government Subsidy page (/subsidies) to include (a) a clear Central + State subsidy comparison table for 1kW, 2kW, and 3kW systems, (b) an explanation section for “PM Surya Ghar” and state policy (English page copy; table values may include ₹ amounts), and (c) prominent “Total Subsidy” summary cards showing example totals ₹45,000, ₹90,000, and ₹1,08,000.",
+      "text": "Replace the website logo with the user-uploaded logo so that the header and footer display the new logo consistently (including mobile header), without showing the fallback 'GKV' text logo unless the image fails to load.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-user"
+          "msg-4"
         ],
         "quotes": [
-          "1️⃣ Government Subsidy Section\n\nCentral + State subsidy table (1kW / 2kW / 3kW)\n\nPM Surya Ghar + State policy explanation\n\nTotal subsidy cards (jaise ₹45,000 / ₹90,000 / ₹1,08,000)"
+          "jitane kw ka hai utane kw ka photo dikhaye ok mera logo upload kare"
         ]
       },
       "acceptanceCriteria": [
-        "Visiting /subsidies shows a table with rows/columns that clearly compare Central vs State subsidy for 1kW, 2kW, 3kW (and includes a combined/total column or equivalent clarity).",
-        "/subsidies includes an English section that explains PM Surya Ghar and state policy at a high level (no placeholders like “lorem ipsum”).",
-        "/subsidies includes three visually distinct summary cards displaying ₹45,000, ₹90,000, and ₹1,08,000 as example total subsidies.",
-        "The existing page layout, header/footer, and SEO metadata remain intact and consistent with the site style."
+        "The logo rendered in SiteHeader uses the same path as before (currently `/assets/generated/gkv-logo.dim_512x512.png`) but displays the new uploaded logo artwork.",
+        "The logo rendered in SiteFooter matches the header logo and is visually consistent.",
+        "If the logo image fails to load, the existing fallback UI still appears (no regression)."
       ]
     },
     {
       "id": "REQ-2",
-      "text": "Add a Grid-Connected Solar System “Working Diagram” section using a custom infographic that visually shows the flow “Solar Panel → Inverter → Meter → Grid” with Hindi labels inside the diagram, and display three benefit callouts with icons: “60% subsidy”, “25 years power”, and “Big savings on bills” (page copy in English is allowed; Hindi is required inside the diagram labels).",
+      "text": "On the Solar Calculator page, display a representative solar installation image that automatically matches the calculated system size (kW) so that the user sees 'the photo for that many kW'.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-user"
+          "msg-4"
         ],
         "quotes": [
-          "2️⃣ Grid Connected Solar System – Working Diagram\n\nVisual infographic (Solar Panel → Inverter → Meter → Grid)\nHindi labels (jaise aapne image me dikhaya)\n\nBenefits icons:\n\n60% subsidy\n\n25 saal tak bijli\n\nBill me badi bachat"
+          "jitane kw ka hai utane kw ka photo dikhaye"
         ]
       },
       "acceptanceCriteria": [
-        "A new infographic image asset with Hindi labels is added under frontend/public/assets/generated and is used on an appropriate page/section (either /how-it-works or a dedicated section as part of the site).",
-        "The infographic visually communicates the sequence Solar Panel → Inverter → Meter → Grid (directional arrows/flow are clearly visible).",
-        "Three benefit callouts are visible near the diagram with icons and text matching: “60% subsidy”, “25 years power”, and “Big savings on bills”.",
-        "The diagram section is responsive (readable on mobile and desktop) and has accurate alt text."
+        "Calculator page shows a kW-matched image near the results (based on `results.systemSizeKW`).",
+        "The image selection is deterministic via defined kW ranges (e.g., <=2 kW, 3–5 kW, 6–10 kW, 11–20 kW, >20 kW).",
+        "If an image is missing for a range, a safe fallback image is shown and the page layout does not break."
       ]
     },
     {
       "id": "REQ-3",
-      "text": "Refactor the Solar Services page (/services) into an “NSPG-style” services grid for GKV Smart Energy with exactly these service categories as cards: Rooftop Residential, Off-Grid, Hybrid, Aata Chakki, Hospital, and College / Hotel / Petrol Pump. Each card must include a short description and a “Learn More” button that routes to a dedicated SEO-friendly detail page for that service.",
+      "text": "Add the required static image assets under `frontend/public/assets/generated` and wire them into the UI (do not serve generated images via the backend).",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-user"
+          "msg-4"
         ],
         "quotes": [
-          "3️⃣ Services Page – NSPG style\n\nGKV Smart Energy ke naam se:\n\nRooftop Residential\n\nOff-Grid\n\nHybrid\n\nAata Chakki\n\nHospital\n\nCollege / Hotel / Petrol Pump\n\nHar card me:\n\nShort description\n\n“Learn More” button\n\nSeparate detail page (SEO friendly)"
+          "jitane kw ka hai utane kw ka photo dikhaye ok mera logo upload kare"
         ]
       },
       "acceptanceCriteria": [
-        "/services renders a card grid/list containing all 6 requested service categories with the exact labels (minor punctuation/case differences acceptable; meaning must match).",
-        "Each service card includes a short description (English) and a visible “Learn More” CTA.",
-        "Each “Learn More” button navigates to a unique detail route (e.g., /services/rooftop-residential), not an anchor on the same page.",
-        "Each detail page sets SEO metadata (title + meta description) via the existing SEO utility and includes unique, non-placeholder English content relevant to the service.",
-        "Navigation to /services and each service detail page works in both desktop and mobile navigation flows."
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "text": "Implement a functional Solar Savings Calculator on /calculator (replacing the current screenshot-only experience) where the user enters their monthly electricity bill and the UI automatically calculates and displays: recommended system size (kW), estimated annual savings, units generated, space required, and project cost after subtracting subsidy.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-user"
-        ],
-        "quotes": [
-          "4️⃣ Solar Savings Calculator (Hero Feature 🔥)\n\nMonthly electricity bill input\n\nAuto calculate:\n\nSystem size (kW)\n\nAnnual savings\n\nUnits generated\n\nSpace required\n\nProject cost – subsidy minus"
-        ]
-      },
-      "acceptanceCriteria": [
-        "/calculator includes at least one input for “Monthly electricity bill” and updates results automatically when the input changes.",
-        "The calculator displays all five outputs: system size (kW), annual savings, units generated, space required, and project cost after subsidy.",
-        "Displayed results include units/labels (e.g., kW, ₹/year, units/year, sq ft or sq m) and are formatted legibly.",
-        "The calculator provides reasonable default assumptions via clearly labeled constants or helper text in the UI (e.g., tariff, generation per kW), without requiring any backend dependency.",
-        "The page remains responsive and retains SEO metadata."
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "text": "Add a prominent “Book Free Consultation” CTA that offers WhatsApp, Call, and Form options, ensuring leads can be initiated directly to the owner’s mobile via WhatsApp deep-link and tel link, and via the existing contact form for form submissions.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-user"
-        ],
-        "quotes": [
-          "5️⃣ Book Free Consultation Button\n\nWhatsApp / Call / Form integration\n\nDirect lead aapke mobile par"
-        ]
-      },
-      "acceptanceCriteria": [
-        "At least one highly visible “Book Free Consultation” CTA is present on key pages (Home, Services, Calculator, Subsidies) and/or in the global header/footer.",
-        "The Call option uses a tel: link targeting the existing number (+91 77180 53222).",
-        "The WhatsApp option opens WhatsApp using a wa.me or api.whatsapp.com deep-link to the same phone number (+91 77180 53222) with a prefilled message.",
-        "The Form option routes to the existing contact page/section and uses the existing contact form submission flow.",
-        "No third-party auth or external messaging APIs are introduced."
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "text": "Align site navigation labels and information architecture with the recommended structure: Home, About GKV Smart Energy, Government Subsidy, Solar Services, Solar Calculator, Projects / Gallery, Contact Us (while keeping any existing extra pages only if they do not conflict).",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-user"
-        ],
-        "quotes": [
-          "🧱 Website Structure (Recommended)\n\nHome\n\nAbout GKV Smart Energy\n\nGovernment Subsidy\n\nSolar Services\n\nSolar Calculator\n\nProjects / Gallery\n\nContact Us"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Header navigation labels reflect the recommended wording (e.g., “Government Subsidy”, “Solar Services”, “Solar Calculator”, “Projects / Gallery”, “About GKV Smart Energy”).",
-        "Each nav item routes to the correct existing page/route and works on both desktop and mobile menus.",
-        "No navigation regressions: existing routes still load and active-route styling continues to work."
+        "All newly generated images are placed under `frontend/public/assets/generated` and can be loaded by the browser via `/assets/generated/...` paths.",
+        "No backend endpoints or storage are introduced for these images."
       ]
     }
   ],
   "constraints": [
-    "Backend must remain a single Motoko actor in backend/main.mo; only add backend changes if strictly necessary for the requested features.",
-    "Do not edit files under frontend/src/components/ui (compose them instead).",
-    "Do not edit frontend immutable paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx.",
-    "All user-facing copy included in this build request must be written/implemented in English (except Hindi labels required inside the working-diagram infographic)."
+    "Do not edit files under `frontend/src/components/ui` (compose existing UI components instead).",
+    "Do not modify `frontend/src/hooks/useInternetIdentity.ts(x)`, `frontend/src/hooks/useActor.ts`, or `frontend/src/main.tsx` (immutable paths).",
+    "Backend must remain a single Motoko actor in `backend/main.mo`; only add a migration if persistent state changes (not expected for this request)."
   ],
   "nonGoals": [
-    "Implementing third-party authentication providers (only Internet Identity is supported).",
-    "Adding external databases or third-party APIs for subsidy data; values/content should be maintained within the app code/content.",
-    "Real-time chat, WebSockets, push notifications, or SMS integrations."
+    "Implementing runtime user logo upload functionality inside the app (this request is handled by replacing the deployed static logo asset using the uploaded file).",
+    "Adding new backend storage or admin panels for managing kW images."
   ],
   "imageRequirements": {
     "required": [
-      "Grid-connected solar working diagram infographic with Hindi labels and arrows showing Solar Panel → Inverter → Meter → Grid (grid-connected-working-diagram-hindi.dim_1400x900.png)"
+      "Rooftop solar installation photo/illustration for small system size (solar-kw-02.dim_1200x600.png)",
+      "Rooftop solar installation photo/illustration for medium-small system size (solar-kw-05.dim_1200x600.png)",
+      "Rooftop solar installation photo/illustration for medium system size (solar-kw-10.dim_1200x600.png)",
+      "Rooftop solar installation photo/illustration for large system size (solar-kw-20.dim_1200x600.png)",
+      "Rooftop solar installation photo/illustration for very large system size (solar-kw-50.dim_1200x600.png)"
     ],
-    "edits": []
+    "edits": [
+      "Replace existing logo artwork using the uploaded logo (gkv-logo.dim_512x512.png > gkv-logo.dim_512x512.png)"
+    ]
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [
+      "Use English for user-facing text"
+    ],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
   }
 }

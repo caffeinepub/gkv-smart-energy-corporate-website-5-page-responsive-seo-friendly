@@ -9,6 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { BRAND } from '@/lib/brand';
 
 const navLinks = [
   { path: '/', label: 'Home' },
@@ -37,8 +38,8 @@ export default function SiteHeader() {
         <Link to="/" className="flex items-center gap-3">
           {!logoError ? (
             <img
-              src="/assets/generated/gkv-logo.dim_512x512.png"
-              alt="GKV Smart Energy"
+              src={BRAND.logoPath}
+              alt={BRAND.name}
               className="h-10 w-10 object-contain"
               onError={() => setLogoError(true)}
             />
@@ -47,7 +48,7 @@ export default function SiteHeader() {
               <span className="text-primary font-bold text-lg">GKV</span>
             </div>
           )}
-          <span className="text-xl font-bold text-primary hidden sm:inline">GKV Smart Energy</span>
+          <span className="text-xl font-bold text-primary hidden sm:inline">{BRAND.name}</span>
         </Link>
 
         {/* Desktop Navigation */}

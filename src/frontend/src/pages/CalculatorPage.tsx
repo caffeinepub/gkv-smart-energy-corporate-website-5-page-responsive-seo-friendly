@@ -11,10 +11,12 @@ import {
   formatNumber,
   CALCULATOR_ASSUMPTIONS,
 } from '@/lib/solarCalculator';
+import { getKwMatchedImage, getFallbackImage } from '@/lib/solarKwImages';
 
 export default function CalculatorPage() {
   const [monthlyBill, setMonthlyBill] = useState<number>(3000);
   const [results, setResults] = useState(calculateSolarSystem(3000));
+  const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
     setSEO(
@@ -26,6 +28,7 @@ export default function CalculatorPage() {
   useEffect(() => {
     if (monthlyBill > 0) {
       setResults(calculateSolarSystem(monthlyBill));
+      setImageError(false); // Reset image error when results change
     }
   }, [monthlyBill]);
 
@@ -33,6 +36,9 @@ export default function CalculatorPage() {
     const value = parseFloat(e.target.value) || 0;
     setMonthlyBill(value);
   };
+
+  const kwImage = getKwMatchedImage(results.systemSizeKW);
+  const displayImagePath = imageError ? getFallbackImage() : kwImage.imagePath;
 
   return (
     <div className="flex flex-col">
@@ -85,6 +91,29 @@ export default function CalculatorPage() {
                   <p className="text-sm text-muted-foreground">
                     Enter your average monthly electricity bill to get accurate calculations
                   </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* System Size Image - kW Matched */}
+            <Card className="border-2 overflow-hidden">
+              <CardHeader>
+                <CardTitle className="text-xl">Your Recommended Solar System</CardTitle>
+                <CardDescription>
+                  Based on your {results.systemSizeKW} kW system requirement
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="p-0">
+                <div className="relative w-full aspect-[2/1] bg-muted">
+                  <img
+                    src={displayImagePath}
+                    alt={kwImage.description}
+                    className="w-full h-full object-cover"
+                    onError={() => setImageError(true)}
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                    <p className="text-white text-sm font-medium">{kwImage.description}</p>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -161,8 +190,8 @@ export default function CalculatorPage() {
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-3xl font-bold text-primary">{formatCurrency(results.projectCost)}</p>
-                  <p className="text-sm text-muted-foreground mt-1">Before subsidy</p>
+                  <p className="text-3xl font-bold text-primary">{formatCurrency(results.finalCost)}</p>
+                  <p className="text-sm text-muted-foreground mt-1">After subsidy</p>
                 </CardContent>
               </Card>
 
@@ -172,70 +201,62 @@ export default function CalculatorPage() {
                     <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
                       <IndianRupee className="h-5 w-5 text-primary" />
                     </div>
-                    <CardTitle className="text-lg">After Subsidy</CardTitle>
+                    <CardTitle className="text-lg">Subsidy Amount</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-3xl font-bold text-primary">{formatCurrency(results.finalCost)}</p>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    Subsidy: {formatCurrency(results.subsidy)}
-                  </p>
+                  <p className="text-3xl font-bold text-primary">{formatCurrency(results.subsidy)}</p>
+                  <p className="text-sm text-muted-foreground mt-1">Government benefit</p>
                 </CardContent>
               </Card>
             </div>
 
             {/* Assumptions Card */}
-            <Card className="border-2 border-blue-200 bg-blue-50/50">
+            <Card className="bg-muted/50">
               <CardHeader>
-                <CardTitle className="text-xl">Calculation Assumptions</CardTitle>
-                <CardDescription className="text-base">
-                  These calculations are based on the following conservative estimates
+                <CardTitle className="text-lg">Calculation Assumptions</CardTitle>
+                <CardDescription>
+                  These calculations are based on the following industry-standard assumptions
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="grid gap-3 sm:grid-cols-2">
-                  <div className="text-sm">
-                    <span className="font-medium">Electricity Tariff:</span>{' '}
-                    <span className="text-muted-foreground">
-                      ₹{CALCULATOR_ASSUMPTIONS.electricityTariff}/unit
-                    </span>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div className="space-y-1">
+                    <p className="text-sm font-medium">Electricity Tariff</p>
+                    <p className="text-sm text-muted-foreground">
+                      ₹{CALCULATOR_ASSUMPTIONS.electricityTariff} per unit
+                    </p>
                   </div>
-                  <div className="text-sm">
-                    <span className="font-medium">Annual Generation:</span>{' '}
-                    <span className="text-muted-foreground">
-                      {formatNumber(CALCULATOR_ASSUMPTIONS.annualGenerationPerKW)} units/kW/year
-                    </span>
+                  <div className="space-y-1">
+                    <p className="text-sm font-medium">Annual Generation</p>
+                    <p className="text-sm text-muted-foreground">
+                      {formatNumber(CALCULATOR_ASSUMPTIONS.annualGenerationPerKW)} units per kW
+                    </p>
                   </div>
-                  <div className="text-sm">
-                    <span className="font-medium">Space Required:</span>{' '}
-                    <span className="text-muted-foreground">
-                      {CALCULATOR_ASSUMPTIONS.spacePerKW} sq ft/kW
-                    </span>
+                  <div className="space-y-1">
+                    <p className="text-sm font-medium">Space Required</p>
+                    <p className="text-sm text-muted-foreground">
+                      {CALCULATOR_ASSUMPTIONS.spacePerKW} sq ft per kW
+                    </p>
                   </div>
-                  <div className="text-sm">
-                    <span className="font-medium">System Efficiency:</span>{' '}
-                    <span className="text-muted-foreground">
-                      {CALCULATOR_ASSUMPTIONS.systemEfficiency * 100}%
-                    </span>
+                  <div className="space-y-1">
+                    <p className="text-sm font-medium">System Efficiency</p>
+                    <p className="text-sm text-muted-foreground">
+                      {(CALCULATOR_ASSUMPTIONS.systemEfficiency * 100).toFixed(0)}%
+                    </p>
                   </div>
                 </div>
-                <p className="text-sm text-muted-foreground mt-4">
-                  * Actual values may vary based on location, roof orientation, shading, and other factors. Contact us for a detailed site assessment and accurate quote.
+                <p className="text-xs text-muted-foreground mt-4">
+                  * Actual results may vary based on location, weather conditions, and system quality.
+                  Contact us for a detailed site assessment.
                 </p>
               </CardContent>
             </Card>
-          </div>
-        </div>
-      </section>
 
-      {/* CTA Section */}
-      <section className="py-16 md:py-20 bg-gradient-to-br from-blue-50 to-green-50">
-        <div className="container">
-          <div className="mx-auto max-w-4xl">
-            <BookFreeConsultationCTA
-              title="Get a Detailed Quote"
-              description="Contact us for a free site assessment and customized solar solution with accurate pricing"
-            />
+            {/* CTA Section */}
+            <div className="mt-12">
+              <BookFreeConsultationCTA variant="default" />
+            </div>
           </div>
         </div>
       </section>

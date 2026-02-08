@@ -2,11 +2,12 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-upgrade-the-government-subsidy-page-subsidies-to-include-a-a-clear-central-state-subsidy-comparison-table-for-1kw-2kw-and-3kw-systems-b-an-explanation-section-for-pm-surya-ghar-and-state-policy-english-page-copy-table-values-may-include-amounts-and-c-prominent-total-subsidy-summary-cards-showing-example-totals-45-000-90-000-and-1-08-000",
-      "featureTitle": "Upgrade the Government Subsidy page (/subsidies) to include (a) a clear Central + State subsidy comparison table for 1kW, 2kW, and 3kW systems, (b) an explanation section for “PM Surya Ghar” and state policy (English page copy; table values may include ₹ amounts), and (c) prominent “Total Subsidy” summary cards showing example totals ₹45,000, ₹90,000, and ₹1,08,000.",
+      "featureId": "feature-replace-the-website-logo-with-the-user-uploaded-logo-so-that-the-header-and-footer-display-the-new-logo-consistently-including-mobile-header-without-showing-the-fallback-gkv-text-logo-unless-the-image-fails-to-load",
+      "featureTitle": "Replace the website logo with the user-uploaded logo so that the header and footer display the new logo consistently (including mobile header), without showing the fallback 'GKV' text logo unless the image fails to load.",
       "files": [
-        "frontend/src/components/BookFreeConsultationCTA.tsx",
-        "frontend/src/pages/SubsidiesPage.tsx"
+        "frontend/src/components/SiteFooter.tsx",
+        "frontend/src/components/SiteHeader.tsx",
+        "frontend/src/lib/brand.ts"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -21,10 +22,11 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-add-a-grid-connected-solar-system-working-diagram-section-using-a-custom-infographic-that-visually-shows-the-flow-solar-panel-inverter-meter-grid-with-hindi-labels-inside-the-diagram-and-display-three-benefit-callouts-with-icons-60-subsidy-25-years-power-and-big-savings-on-bills-page-copy-in-english-is-allowed-hindi-is-required-inside-the-diagram-labels",
-      "featureTitle": "Add a Grid-Connected Solar System “Working Diagram” section using a custom infographic that visually shows the flow “Solar Panel → Inverter → Meter → Grid” with Hindi labels inside the diagram, and display three benefit callouts with icons: “60% subsidy”, “25 years power”, and “Big savings on bills” (page copy in English is allowed; Hindi is required inside the diagram labels).",
+      "featureId": "feature-on-the-solar-calculator-page-display-a-representative-solar-installation-image-that-automatically-matches-the-calculated-system-size-kw-so-that-the-user-sees-the-photo-for-that-many-kw",
+      "featureTitle": "On the Solar Calculator page, display a representative solar installation image that automatically matches the calculated system size (kW) so that the user sees 'the photo for that many kW'.",
       "files": [
-        "frontend/src/pages/HowItWorksPage.tsx"
+        "frontend/src/lib/solarKwImages.ts",
+        "frontend/src/pages/CalculatorPage.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -39,13 +41,10 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-refactor-the-solar-services-page-services-into-an-nspg-style-services-grid-for-gkv-smart-energy-with-exactly-these-service-categories-as-cards-rooftop-residential-off-grid-hybrid-aata-chakki-hospital-and-college-hotel-petrol-pump-each-card-must-include-a-short-description-and-a-learn-more-button-that-routes-to-a-dedicated-seo-friendly-detail-page-for-that-service",
-      "featureTitle": "Refactor the Solar Services page (/services) into an “NSPG-style” services grid for GKV Smart Energy with exactly these service categories as cards: Rooftop Residential, Off-Grid, Hybrid, Aata Chakki, Hospital, and College / Hotel / Petrol Pump. Each card must include a short description and a “Learn More” button that routes to a dedicated SEO-friendly detail page for that service.",
+      "featureId": "feature-add-the-required-static-image-assets-under-frontend-public-assets-generated-and-wire-them-into-the-ui-do-not-serve-generated-images-via-the-backend",
+      "featureTitle": "Add the required static image assets under `frontend/public/assets/generated` and wire them into the UI (do not serve generated images via the backend).",
       "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/data/serviceDetails.ts",
-        "frontend/src/pages/ServiceDetailPage.tsx",
-        "frontend/src/pages/ServicesPage.tsx"
+        "frontend/src/lib/solarKwImages.ts"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -56,67 +55,6 @@
       ],
       "testIds": [
         "REQ-3"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-implement-a-functional-solar-savings-calculator-on-calculator-replacing-the-current-screenshot-only-experience-where-the-user-enters-their-monthly-electricity-bill-and-the-ui-automatically-calculates-and-displays-recommended-system-size-kw-estimated-annual-savings-units-generated-space-required-and-project-cost-after-subtracting-subsidy",
-      "featureTitle": "Implement a functional Solar Savings Calculator on /calculator (replacing the current screenshot-only experience) where the user enters their monthly electricity bill and the UI automatically calculates and displays: recommended system size (kW), estimated annual savings, units generated, space required, and project cost after subtracting subsidy.",
-      "files": [
-        "frontend/src/lib/solarCalculator.ts",
-        "frontend/src/pages/CalculatorPage.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-4"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-a-prominent-book-free-consultation-cta-that-offers-whatsapp-call-and-form-options-ensuring-leads-can-be-initiated-directly-to-the-owner-s-mobile-via-whatsapp-deep-link-and-tel-link-and-via-the-existing-contact-form-for-form-submissions",
-      "featureTitle": "Add a prominent “Book Free Consultation” CTA that offers WhatsApp, Call, and Form options, ensuring leads can be initiated directly to the owner’s mobile via WhatsApp deep-link and tel link, and via the existing contact form for form submissions.",
-      "files": [
-        "frontend/src/components/BookFreeConsultationCTA.tsx",
-        "frontend/src/components/SiteHeader.tsx",
-        "frontend/src/pages/CalculatorPage.tsx",
-        "frontend/src/pages/HomePage.tsx",
-        "frontend/src/pages/ServicesPage.tsx",
-        "frontend/src/pages/SubsidiesPage.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-5"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-align-site-navigation-labels-and-information-architecture-with-the-recommended-structure-home-about-gkv-smart-energy-government-subsidy-solar-services-solar-calculator-projects-gallery-contact-us-while-keeping-any-existing-extra-pages-only-if-they-do-not-conflict",
-      "featureTitle": "Align site navigation labels and information architecture with the recommended structure: Home, About GKV Smart Energy, Government Subsidy, Solar Services, Solar Calculator, Projects / Gallery, Contact Us (while keeping any existing extra pages only if they do not conflict).",
-      "files": [
-        "frontend/src/components/SiteFooter.tsx",
-        "frontend/src/components/SiteHeader.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-6"
       ],
       "confidence": "high"
     }

@@ -1,49 +1,59 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-08T06:07:08.192Z",
-  "summary": "Most requested frontend features appear implemented: updated navigation labels, Services grid with service detail routes + SEO, a functional calculator with assumptions, subsidies page enhancements, a How-It-Works working diagram section, and a reusable Free Consultation CTA with WhatsApp/Call/Form options. The only clearly unverifiable/missing item from the diff summary is the required Hindi infographic image asset under the specified public assets path; the code references it but the diff does not show the asset being added.",
+  "generatedAt": "2026-02-08T06:17:18.017Z",
+  "summary": "REQ-1 and REQ-2 appear to be implemented in code (shared logo path + header/footer fallback handling; kW-to-image mapping + calculator integration). However, the diff does not show the required static image assets being added under `frontend/public/assets/generated`, nor does it provide evidence that the actual logo artwork file was replaced. The diff also includes multiple unrelated page/route/content changes not requested.",
   "missing_requirements": [
     {
-      "id": "REQ-2",
-      "requirement": "Add a new infographic image asset with Hindi labels under frontend/public/assets/generated and use it for the Grid-Connected Solar System Working Diagram section.",
-      "reason": "The code references the PNG at /assets/generated/grid-connected-working-diagram-hindi.dim_1400x900.png, but the diff summary does not show any added file under frontend/public/assets/generated (binary assets may be omitted from the LLM-readable diff).",
+      "id": "REQ-3",
+      "requirement": "Add the required static image assets under `frontend/public/assets/generated` and wire them into the UI (do not serve generated images via the backend).",
+      "reason": "The diff shows code referencing `/assets/generated/solar-kw-*.png` but does not show the actual image files being added under `frontend/public/assets/generated`.",
       "evidence": [
-        "frontend/src/pages/HowItWorksPage.tsx (references /assets/generated/grid-connected-working-diagram-hindi.dim_1400x900.png)"
+        "frontend/src/lib/solarKwImages.ts"
+      ]
+    },
+    {
+      "id": "REQ-1",
+      "requirement": "Replace the website logo with the user-uploaded logo so that the header and footer display the new logo consistently (including mobile header), without showing the fallback 'GKV' text logo unless the image fails to load.",
+      "reason": "Code continues to reference the same logo path and adds fallback behavior, but the diff does not include any evidence that the static logo asset (`frontend/public/assets/generated/gkv-logo.dim_512x512.png`) artwork itself was replaced as required.",
+      "evidence": [
+        "frontend/src/lib/brand.ts",
+        "frontend/src/components/SiteHeader.tsx",
+        "frontend/src/components/SiteFooter.tsx"
       ]
     }
   ],
   "hallucinated_features": [
     {
-      "description": "Added specific 'Board of Directors' section and named directors with headshot images on the About page.",
-      "reason": "The BuildRequest does not ask for adding directors, names, or headshots; it only specifies navigation/IA and solar/subsidy/services/calculator/CTA features.",
+      "description": "Added a new dynamic service detail route `/services/$serviceSlug` and related routing changes.",
+      "reason": "Not requested by the BuildRequest, which is limited to logo replacement and kW-matched calculator imagery.",
       "evidence": [
-        "frontend-file-summaries.txt (AboutPage: \"Board of Directors section with three directors (Vishnu, Kartik, and Ganesh Kumar Chaudhary) displayed with square headshot images\")"
+        "frontend-file-summaries.txt"
       ]
     },
     {
-      "description": "Added Branch Office address details (Varanasi, Uttar Pradesh) on the Contact page.",
-      "reason": "The BuildRequest does not request adding multiple offices/addresses; it only requires CTA routing to existing contact form/flow.",
+      "description": "Substantial new/updated content across multiple pages (e.g., About page board of directors, expanded Subsidies page, HowItWorks page infographic content, Projects/Contact updates).",
+      "reason": "Not requested by the BuildRequest; scope is limited to branding logo asset replacement and calculator kW image behavior.",
       "evidence": [
-        "frontend-file-summaries.txt (ContactPage: \"both Head Office ... and Branch Office (Varanasi, Uttar Pradesh) addresses\")"
+        "frontend-file-summaries.txt"
+      ]
+    },
+    {
+      "description": "Introduced new shared brand constants including a tagline and brand name centralization.",
+      "reason": "Not explicitly requested; the request only requires the logo artwork replacement while keeping the same logo path and consistent rendering.",
+      "evidence": [
+        "frontend/src/lib/brand.ts"
       ]
     }
   ],
-  "confidence": 0.68,
+  "confidence": 0.64,
   "changed_files": [
     "frontend-file-summaries.txt",
-    "frontend/src/App.tsx",
-    "frontend/src/components/BookFreeConsultationCTA.tsx",
     "frontend/src/components/SiteFooter.tsx",
     "frontend/src/components/SiteHeader.tsx",
-    "frontend/src/data/serviceDetails.ts",
-    "frontend/src/lib/solarCalculator.ts",
+    "frontend/src/lib/brand.ts",
+    "frontend/src/lib/solarKwImages.ts",
     "frontend/src/pages/CalculatorPage.tsx",
-    "frontend/src/pages/HomePage.tsx",
-    "frontend/src/pages/HowItWorksPage.tsx",
-    "frontend/src/pages/ServiceDetailPage.tsx",
-    "frontend/src/pages/ServicesPage.tsx",
-    "frontend/src/pages/SubsidiesPage.tsx",
     "project_state.json"
   ]
 }
